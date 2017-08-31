@@ -1,14 +1,11 @@
 ﻿using DemoInstagram.APIsHelper;
 using DemoInstagram.Model;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace DemoInstagram
@@ -22,6 +19,7 @@ namespace DemoInstagram
             InitializeComponent();
             this.profile = profile;
             lbUsername.Text = profile.full_name;
+
         }
 
         private void Information_Load(object sender, EventArgs e)
@@ -34,7 +32,10 @@ namespace DemoInstagram
             using (WebClient client = new WebClient())
             {
                 string name = profile.profile_picture.Split('/').LastOrDefault();
-                client.DownloadFileAsync(new Uri(profile.profile_picture), @"D:\Temp\" + name);
+                client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
+                client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+
+                client.DownloadFileAsync(new Uri(profile.profile_picture), Configuaration.FOLDER_NAME + name);
             }
 
         }
@@ -50,7 +51,9 @@ namespace DemoInstagram
                     if (recentImage.url != null)
                     {
                         string name = recentImage.url.Split('/').LastOrDefault();
-                        client.DownloadFileAsync(new Uri(recentImage.url), @"D:\Temp\" + name);
+                        client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
+                        client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+                        client.DownloadFileAsync(new Uri(recentImage.url), Configuaration.FOLDER_NAME + name);
                     }
 
                 }
@@ -97,9 +100,10 @@ namespace DemoInstagram
                         if (image.url != null)
                         {
                             string name = image.url.Split('/').LastOrDefault();
-                            client.DownloadFileAsync(new Uri(image.url), @"D:\Temp\" + name);
+                            client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
+                            client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+                            client.DownloadFileAsync(new Uri(image.url), Configuaration.FOLDER_NAME + name);
                         }
-
                     }
                 }
 
@@ -110,5 +114,18 @@ namespace DemoInstagram
             }
 
         }
+
+        void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            progressBar1.Maximum = (int)e.TotalBytesToReceive / 100;
+            progressBar1.Value = (int)e.BytesReceived / 100;
+        }
+
+        void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            lbNotification.Text = Configuaration.DOWNLOAD_SUCCESS + Configuaration.FOLDER_NAME;
+
+        }
+
     }
 }

@@ -37,6 +37,8 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.lbSearchUser = new System.Windows.Forms.ListBox();
             this.btDownloadReccentImageofUser = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.lbNotification = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -122,11 +124,29 @@
             this.btDownloadReccentImageofUser.UseVisualStyleBackColor = true;
             this.btDownloadReccentImageofUser.Click += new System.EventHandler(this.btDownloadReccentImageofUser_Click);
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(41, 344);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(100, 23);
+            this.progressBar1.TabIndex = 9;
+            // 
+            // lbNotification
+            // 
+            this.lbNotification.AutoSize = true;
+            this.lbNotification.Location = new System.Drawing.Point(169, 349);
+            this.lbNotification.Name = "lbNotification";
+            this.lbNotification.Size = new System.Drawing.Size(46, 17);
+            this.lbNotification.TabIndex = 10;
+            this.lbNotification.Text = "label3";
+            // 
             // Information
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(721, 405);
+            this.Controls.Add(this.lbNotification);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.btDownloadReccentImageofUser);
             this.Controls.Add(this.lbSearchUser);
             this.Controls.Add(this.btnSearch);
@@ -155,5 +175,7 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ListBox lbSearchUser;
         private System.Windows.Forms.Button btDownloadReccentImageofUser;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label lbNotification;
     }
 }

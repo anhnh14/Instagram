@@ -29,7 +29,7 @@ namespace DemoInstagram
                 MessageBox.Show(ex.Message);
                 return;
             }
-            
+            System.IO.Directory.CreateDirectory(Configuaration.FOLDER_NAME);
             this.Hide();
             Information inf = new Information(profile);
             inf.Show();
