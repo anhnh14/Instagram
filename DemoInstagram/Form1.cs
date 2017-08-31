@@ -1,6 +1,7 @@
 ﻿using DemoInstagram.APIsHelper;
 using System;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -15,14 +16,18 @@ namespace DemoInstagram
             InitializeComponent();
         }
 
-        private async void btnLogin_Click(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
         {
             Endpoint endpoint = new Endpoint();
             Profile profile = new Profile();
             try
             {
                 Global.TOKEN = tbToken.Text;
-                profile = await endpoint.getProfile();
+                Task.Run(async () =>
+                {
+                    profile = await endpoint.getProfile();
+                }).GetAwaiter().GetResult();
+                
             }
             catch(Exception ex)
             {

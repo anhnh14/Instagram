@@ -47,7 +47,7 @@ namespace DemoInstagram
                 Task.Run(async () =>
                 {
                     recentPicture = await endpoint.getRecentImage();
-                }).GetAwaiter().GetResult();
+                }).Wait();
                 Download(recentPicture);
             }
             catch (Exception ex)
@@ -68,7 +68,7 @@ namespace DemoInstagram
                 Task.Run(async () =>
                 {
                     profile = await endPoint.searchUser(search);
-                }).GetAwaiter().GetResult();
+                }).Wait();
                 lbSearchUser.DataSource = profile;
                 lbSearchUser.DisplayMember = "full_name";
                 lbSearchUser.ValueMember = "id";
@@ -93,7 +93,7 @@ namespace DemoInstagram
                     Task.Run(async () =>
                     {
                         picture = await endpoint.getImageRecentPublishByUser(userId);
-                    }).GetAwaiter().GetResult();
+                    }).Wait();
                     Download(picture);
                 }
 
