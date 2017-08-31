@@ -35,7 +35,14 @@ namespace DemoInstagram
             this.Hide();
             Information inf = new Information(profile);
             inf.Show();
+            inf.FormClosed += new FormClosedEventHandler(frm2_FormClosed);
+
         }
-        
+
+        private void frm2_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit(); // Unhide Form1
+        }
+
     }
 }

@@ -31,14 +31,9 @@ namespace DemoInstagram
 
         private void btn_Download_Click(object sender, EventArgs e)
         {
-            using (WebClient client = new WebClient())
-            {
-                string name = profile.profile_picture.Split('/').LastOrDefault();
-                client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
-                client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-
-                client.DownloadFileAsync(new Uri(profile.profile_picture), Global.DIRECTORY + name);
-            }
+            Picture picture = new Picture();
+            picture.url = profile.profile_picture;
+            Download(picture);
 
         }
 
@@ -48,22 +43,12 @@ namespace DemoInstagram
             try
             {
 
-                Picture recentImage = new Picture();
+                Picture recentPicture = new Picture();
                 Task.Run(async () =>
                 {
-                    recentImage = await endpoint.getRecentImage();
+                    recentPicture = await endpoint.getRecentImage();
                 }).GetAwaiter().GetResult();
-                using (WebClient client = new WebClient())
-                {
-                    if (recentImage.url != null)
-                    {
-                        string name = recentImage.url.Split('/').LastOrDefault();
-                        client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
-                        client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                        client.DownloadFileAsync(new Uri(recentImage.url), Global.DIRECTORY + name);
-                    }
-
-                }
+                Download(recentPicture);
             }
             catch (Exception ex)
             {
@@ -104,21 +89,12 @@ namespace DemoInstagram
                 if (profile != null)
                 {
                     string userId = profile.id;
-                    Picture image = new Picture();
+                    Picture picture = new Picture();
                     Task.Run(async () =>
                     {
-                        image = await endpoint.getImageRecentPublishByUser(userId);
+                        picture = await endpoint.getImageRecentPublishByUser(userId);
                     }).GetAwaiter().GetResult();
-                    using (WebClient client = new WebClient())
-                    {
-                        if (image.url != null)
-                        {
-                            string name = image.url.Split('/').LastOrDefault();
-                            client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
-                            client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                            client.DownloadFileAsync(new Uri(image.url), Global.DIRECTORY + name);
-                        }
-                    }
+                    Download(picture);
                 }
 
             }
@@ -139,8 +115,21 @@ namespace DemoInstagram
         void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
             MessageBox.Show(Configuaration.DOWNLOAD_SUCCESS + Global.DIRECTORY);
-
+            System.Diagnostics.Process.Start(Global.DIRECTORY);
         }
 
+        void Download(Picture picture)
+        {
+            using (WebClient client = new WebClient())
+            {
+                if (picture.url != null)
+                {
+                    string name = picture.url.Split('/').LastOrDefault();
+                    client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
+                    client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+                    client.DownloadFileAsync(new Uri(picture.url), Global.DIRECTORY + name);
+                }
+            }
+        }
     }
 }
