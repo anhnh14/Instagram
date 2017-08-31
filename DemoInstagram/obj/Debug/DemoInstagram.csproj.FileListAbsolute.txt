@@ -1,0 +1,14 @@
+D:\Project\C#\DemoInstagram\DemoInstagram\bin\Debug\DemoInstagram.exe.config
+D:\Project\C#\DemoInstagram\DemoInstagram\bin\Debug\DemoInstagram.exe
+D:\Project\C#\DemoInstagram\DemoInstagram\bin\Debug\DemoInstagram.pdb
+D:\Project\C#\DemoInstagram\DemoInstagram\bin\Debug\Newtonsoft.Json.dll
+D:\Project\C#\DemoInstagram\DemoInstagram\bin\Debug\System.Net.Http.Formatting.dll
+D:\Project\C#\DemoInstagram\DemoInstagram\bin\Debug\Newtonsoft.Json.xml
+D:\Project\C#\DemoInstagram\DemoInstagram\bin\Debug\System.Net.Http.Formatting.xml
+D:\Project\C#\DemoInstagram\DemoInstagram\obj\Debug\DemoInstagram.Form1.resources
+D:\Project\C#\DemoInstagram\DemoInstagram\obj\Debug\DemoInstagram.Information.resources
+D:\Project\C#\DemoInstagram\DemoInstagram\obj\Debug\DemoInstagram.Properties.Resources.resources
+D:\Project\C#\DemoInstagram\DemoInstagram\obj\Debug\DemoInstagram.csproj.GenerateResource.Cache
+D:\Project\C#\DemoInstagram\DemoInstagram\obj\Debug\DemoInstagram.exe
+D:\Project\C#\DemoInstagram\DemoInstagram\obj\Debug\DemoInstagram.pdb
+D:\Project\C#\DemoInstagram\DemoInstagram\obj\Debug\DemoInstagram.csprojResolveAssemblyReference.cache
