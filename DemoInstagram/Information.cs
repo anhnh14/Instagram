@@ -1,11 +1,13 @@
 ﻿using DemoInstagram.APIsHelper;
 using DemoInstagram.Model;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DemoInstagram
@@ -35,17 +37,22 @@ namespace DemoInstagram
                 client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
                 client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
 
-                client.DownloadFileAsync(new Uri(profile.profile_picture), Configuaration.FOLDER_NAME + name);
+                client.DownloadFileAsync(new Uri(profile.profile_picture), Global.DIRECTORY + name);
             }
 
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             Endpoint endpoint = new Endpoint();
             try
             {
-                Picture recentImage = await endpoint.getRecentImage();
+
+                Picture recentImage = new Picture();
+                Task.Run(async () =>
+                {
+                    recentImage = await endpoint.getRecentImage();
+                }).GetAwaiter().GetResult();
                 using (WebClient client = new WebClient())
                 {
                     if (recentImage.url != null)
@@ -53,7 +60,7 @@ namespace DemoInstagram
                         string name = recentImage.url.Split('/').LastOrDefault();
                         client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
                         client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                        client.DownloadFileAsync(new Uri(recentImage.url), Configuaration.FOLDER_NAME + name);
+                        client.DownloadFileAsync(new Uri(recentImage.url), Global.DIRECTORY + name);
                     }
 
                 }
@@ -65,15 +72,18 @@ namespace DemoInstagram
 
         }
 
-        private async void btnSearch_Click(object sender, EventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
         {
             Endpoint endPoint = new Endpoint();
 
             string search = tbSearchUser.Text;
             try
             {
-                var profile = await endPoint.searchUser(search);
-
+                List<Profile> profile = new List<Profile>();
+                Task.Run(async () =>
+                {
+                    profile = await endPoint.searchUser(search);
+                }).GetAwaiter().GetResult();
                 lbSearchUser.DataSource = profile;
                 lbSearchUser.DisplayMember = "full_name";
                 lbSearchUser.ValueMember = "id";
@@ -85,7 +95,7 @@ namespace DemoInstagram
 
         }
 
-        private async void btDownloadReccentImageofUser_Click(object sender, EventArgs e)
+        private void btDownloadReccentImageofUser_Click(object sender, EventArgs e)
         {
             Endpoint endpoint = new Endpoint();
             try
@@ -94,7 +104,11 @@ namespace DemoInstagram
                 if (profile != null)
                 {
                     string userId = profile.id;
-                    Picture image = await endpoint.getImageRecentPublishByUser(userId);
+                    Picture image = new Picture();
+                    Task.Run(async () =>
+                    {
+                        image = await endpoint.getImageRecentPublishByUser(userId);
+                    }).GetAwaiter().GetResult();
                     using (WebClient client = new WebClient())
                     {
                         if (image.url != null)
@@ -102,7 +116,7 @@ namespace DemoInstagram
                             string name = image.url.Split('/').LastOrDefault();
                             client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
                             client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                            client.DownloadFileAsync(new Uri(image.url), Configuaration.FOLDER_NAME + name);
+                            client.DownloadFileAsync(new Uri(image.url), Global.DIRECTORY + name);
                         }
                     }
                 }
@@ -117,13 +131,14 @@ namespace DemoInstagram
 
         void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
+            progressBar1.Value = 0;
             progressBar1.Maximum = (int)e.TotalBytesToReceive / 100;
             progressBar1.Value = (int)e.BytesReceived / 100;
         }
 
         void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            lbNotification.Text = Configuaration.DOWNLOAD_SUCCESS + Configuaration.FOLDER_NAME;
+            MessageBox.Show(Configuaration.DOWNLOAD_SUCCESS + Global.DIRECTORY);
 
         }
 

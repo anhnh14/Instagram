@@ -17,7 +17,7 @@ namespace DemoInstagram.APIsHelper
         //Get profile about owner of the access_token. 
         public async Task<Profile> getProfile()
         {
-            string path = "https://api.instagram.com/v1/users/self/?access_token=" + Global.TOKEN;
+            string path = Configuaration.API + "self/?access_token=" + Global.TOKEN;
             HttpResponseMessage response = await client.GetAsync(path);
             Profile profile = new Profile();
             var jsonString = response.Content.ReadAsStringAsync().Result;
@@ -40,7 +40,7 @@ namespace DemoInstagram.APIsHelper
         //Get the most recent media published by the owner of the access_token. 
         public async Task<Picture> getRecentImage()
         {
-            string path = "https://api.instagram.com/v1/users/self/media/recent?access_token=" + Global.TOKEN;
+            string path = Configuaration.API + "self/media/recent?access_token=" + Global.TOKEN;
             HttpResponseMessage response = await client.GetAsync(path);
             List<string> list = new List<string>();
             string jsonString = response.Content.ReadAsStringAsync().Result;
@@ -71,7 +71,7 @@ namespace DemoInstagram.APIsHelper
         //Get a list of users matching the query. 
         public async Task<List<Profile>> searchUser(string userName)
         {
-            string path = "https://api.instagram.com/v1/users/search?q=" + userName + "&access_token=" + Global.TOKEN;
+            string path = Configuaration.API + "search?q=" + userName + "&access_token=" + Global.TOKEN;
             HttpResponseMessage response = await client.GetAsync(path);
             Profile profile = new Profile();
             List<Profile> listProfile = new List<Profile>();
@@ -98,7 +98,7 @@ namespace DemoInstagram.APIsHelper
         //Get the most recent media published by user from search list
         public async Task<Picture> getImageRecentPublishByUser(string userId)
         {
-            string path = "https://api.instagram.com/v1/users/" + userId + "/media/recent/?access_token=" + Global.TOKEN;
+            string path = Configuaration.API + userId + "/media/recent/?access_token=" + Global.TOKEN;
             HttpResponseMessage response = await client.GetAsync(path);
             List<string> list = new List<string>();
             string jsonString = response.Content.ReadAsStringAsync().Result;

@@ -126,19 +126,20 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(41, 344);
+            this.progressBar1.Location = new System.Drawing.Point(121, 333);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(100, 23);
             this.progressBar1.TabIndex = 9;
+        
             // 
             // lbNotification
             // 
             this.lbNotification.AutoSize = true;
-            this.lbNotification.Location = new System.Drawing.Point(169, 349);
+            this.lbNotification.Location = new System.Drawing.Point(38, 333);
             this.lbNotification.Name = "lbNotification";
-            this.lbNotification.Size = new System.Drawing.Size(46, 17);
+            this.lbNotification.Size = new System.Drawing.Size(65, 17);
             this.lbNotification.TabIndex = 10;
-            this.lbNotification.Text = "label3";
+            this.lbNotification.Text = "Progress";
             // 
             // Information
             // 

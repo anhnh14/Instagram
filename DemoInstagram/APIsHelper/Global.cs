@@ -10,11 +10,16 @@ namespace DemoInstagram.APIsHelper
     {
         private static string token = "";
 
+        private static string directory = "";
         public static string TOKEN
         {
             get { return token; }
             set { token = value; }
         }
-
+        public static string DIRECTORY
+        {
+            get { return directory; }
+            set { directory = value; }
+        }
     }
 }

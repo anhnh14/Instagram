@@ -29,7 +29,9 @@ namespace DemoInstagram
                 MessageBox.Show(ex.Message);
                 return;
             }
-            System.IO.Directory.CreateDirectory(Configuaration.FOLDER_NAME);
+            string path = System.IO.Directory.GetCurrentDirectory();
+            Global.DIRECTORY = path + Configuaration.FOLDER_NAME;
+            System.IO.Directory.CreateDirectory(Global.DIRECTORY);
             this.Hide();
             Information inf = new Information(profile);
             inf.Show();
