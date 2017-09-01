@@ -3,7 +3,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +19,7 @@ namespace DemoInstagram.APIsHelper
         //Get profile about owner of the access_token. 
         public async Task<Profile> getProfile()
         {
-            string path = Configuaration.API + "self/?access_token=" + Global.TOKEN;
+            string path = Configuaration.API_USER + "self/?access_token=" + Global.TOKEN;
             HttpResponseMessage response = await client.GetAsync(path);
             Profile profile = new Profile();
             var jsonString = response.Content.ReadAsStringAsync().Result;
@@ -40,12 +42,12 @@ namespace DemoInstagram.APIsHelper
         //Get the most recent media published by the owner of the access_token. 
         public async Task<Picture> getRecentImage()
         {
-            string path = Configuaration.API + "self/media/recent?access_token=" + Global.TOKEN;
+            string path = Configuaration.API_USER + "self/media/recent?access_token=" + Global.TOKEN;
             HttpResponseMessage response = await client.GetAsync(path);
             List<string> list = new List<string>();
             string jsonString = response.Content.ReadAsStringAsync().Result;
 
-            Picture image = new Picture();
+            Picture picture = new Picture();
             if (response.IsSuccessStatusCode)
             {
                 dynamic stuff = JObject.Parse(jsonString);
@@ -53,8 +55,10 @@ namespace DemoInstagram.APIsHelper
                 JArray v1 = JArray.Parse(v.ToString());
                 if (v1.Count > 0)
                 {
+                    string id = v1[0]["id"].ToString();
                     var standImage = v1[0]["images"]["standard_resolution"];
-                    image = JsonConvert.DeserializeObject<Picture>(standImage.ToString());
+                    picture = JsonConvert.DeserializeObject<Picture>(standImage.ToString());
+                    picture.id = id;
                 }
 
             }
@@ -65,13 +69,13 @@ namespace DemoInstagram.APIsHelper
                 ErrorAPis errorApis = JsonConvert.DeserializeObject<ErrorAPis>(error["meta"].ToString());
                 throw new Exception(errorApis.error_message);
             }
-            return image;
+            return picture;
         }
 
         //Get a list of users matching the query. 
         public async Task<List<Profile>> searchUser(string userName)
         {
-            string path = Configuaration.API + "search?q=" + userName + "&access_token=" + Global.TOKEN;
+            string path = Configuaration.API_USER + "search?q=" + userName + "&access_token=" + Global.TOKEN;
             HttpResponseMessage response = await client.GetAsync(path);
             Profile profile = new Profile();
             List<Profile> listProfile = new List<Profile>();
@@ -98,7 +102,7 @@ namespace DemoInstagram.APIsHelper
         //Get the most recent media published by user from search list
         public async Task<Picture> getImageRecentPublishByUser(string userId)
         {
-            string path = Configuaration.API + userId + "/media/recent/?access_token=" + Global.TOKEN;
+            string path = Configuaration.API_USER + userId + "/media/recent/?access_token=" + Global.TOKEN;
             HttpResponseMessage response = await client.GetAsync(path);
             List<string> list = new List<string>();
             string jsonString = response.Content.ReadAsStringAsync().Result;
@@ -110,8 +114,10 @@ namespace DemoInstagram.APIsHelper
                 JArray v1 = JArray.Parse(v.ToString());
                 if (v1.Count > 0)
                 {
+                    string id = v1[0]["id"].ToString();
                     var standImage = v1[0]["images"]["standard_resolution"];
                     image = JsonConvert.DeserializeObject<Picture>(standImage.ToString());
+                    image.id = id;
                 }
             }
             else
@@ -122,6 +128,27 @@ namespace DemoInstagram.APIsHelper
                 throw new Exception(errorApis.error_message);
             }
             return image;
+        }
+
+        public async void postComment(string comment, string pictureId)
+        {
+            var client = new HttpClient();
+
+            var requestContent = new FormUrlEncodedContent(new[] {
+                    new KeyValuePair<string, string>("access_token",Global.TOKEN),
+                    new KeyValuePair<string, string>("text", comment)
+                });
+            try
+            {
+                HttpResponseMessage response = await client.PostAsync(Configuaration.API_MEDIA + pictureId + "/comments", requestContent);
+               
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
+           
         }
     }
 }

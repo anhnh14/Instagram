@@ -15,13 +15,14 @@ namespace DemoInstagram
     public partial class Information : Form
     {
         Profile profile = new Profile();
+
         static HttpClient client = new HttpClient();
         public Information(Profile profile)
         {
             InitializeComponent();
             this.profile = profile;
             lbUsername.Text = profile.full_name;
-
+            
         }
 
         private void Information_Load(object sender, EventArgs e)
@@ -40,6 +41,8 @@ namespace DemoInstagram
         private void button1_Click(object sender, EventArgs e)
         {
             Endpoint endpoint = new Endpoint();
+            
+            
             try
             {
 
@@ -60,6 +63,7 @@ namespace DemoInstagram
         private void btnSearch_Click(object sender, EventArgs e)
         {
             Endpoint endPoint = new Endpoint();
+            pbRecentImage.Image = null;
 
             string search = tbSearchUser.Text;
             try
@@ -72,6 +76,10 @@ namespace DemoInstagram
                 lbSearchUser.DataSource = profile;
                 lbSearchUser.DisplayMember = "full_name";
                 lbSearchUser.ValueMember = "id";
+                if(profile.Count > 0)
+                {
+                    pbRecentAvatar.Load(profile[0].profile_picture);
+                }
             }
             catch (Exception ex)
             {
@@ -83,19 +91,11 @@ namespace DemoInstagram
         private void btDownloadReccentImageofUser_Click(object sender, EventArgs e)
         {
             Endpoint endpoint = new Endpoint();
+            Picture picture = new Picture();
+            picture.url = pbRecentImage.ImageLocation;
             try
             {
-                Profile profile = (Profile)lbSearchUser.SelectedItem;
-                if (profile != null)
-                {
-                    string userId = profile.id;
-                    Picture picture = new Picture();
-                    Task.Run(async () =>
-                    {
-                        picture = await endpoint.getImageRecentPublishByUser(userId);
-                    }).Wait();
-                    Download(picture);
-                }
+                Download(picture);
 
             }
             catch
@@ -103,6 +103,37 @@ namespace DemoInstagram
                 MessageBox.Show(Configuaration.ERROR_MESSAGE);
             }
 
+        }
+
+        private void btnPost_Click(object sender, EventArgs e)
+        {
+            Endpoint endpoint = new Endpoint();
+
+            //Get User & picture
+            Profile profile = (Profile)lbSearchUser.SelectedItem;
+            Picture picture = new Picture();
+            if (profile != null)
+            {
+                string userId = profile.id;
+               
+                Task.Run(async () =>
+                {
+                    picture = await endpoint.getImageRecentPublishByUser(userId);
+                }).Wait();
+            }
+
+            //Post comment
+            string comment = tbComment.Text;
+            try
+            {
+                endpoint.postComment(comment, picture.id);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+            
         }
 
         void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
@@ -129,6 +160,31 @@ namespace DemoInstagram
                     client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
                     client.DownloadFileAsync(new Uri(picture.url), Global.DIRECTORY + name);
                 }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Endpoint endpoint = new Endpoint();
+            try
+            {
+                Profile profile = (Profile)lbSearchUser.SelectedItem;
+                if (profile != null)
+                {
+                    string userId = profile.id;
+                    Picture picture = new Picture();
+                    Task.Run(async () =>
+                    {
+                        picture = await endpoint.getImageRecentPublishByUser(userId);
+                    }).Wait();
+                    pbRecentImage.SizeMode = PictureBoxSizeMode.StretchImage;
+                    pbRecentImage.Load(picture.url);
+                }
+
+            }
+            catch
+            {
+                MessageBox.Show(Configuaration.ERROR_MESSAGE);
             }
         }
     }

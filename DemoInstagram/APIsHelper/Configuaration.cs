@@ -14,6 +14,8 @@ namespace DemoInstagram.APIsHelper
 
         public static string DOWNLOAD_SUCCESS = "Download Completed! Please check in folder ";
 
-        public static string API = "https://api.instagram.com/v1/users/";
+        public static string API_USER = "https://api.instagram.com/v1/users/";
+
+        public static string API_MEDIA = "https://api.instagram.com/v1/media/";
     }
 }

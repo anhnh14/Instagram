@@ -39,6 +39,14 @@
             this.btDownloadReccentImageofUser = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lbNotification = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tbComment = new System.Windows.Forms.TextBox();
+            this.btnPost = new System.Windows.Forms.Button();
+            this.pbRecentAvatar = new System.Windows.Forms.PictureBox();
+            this.pbRecentImage = new System.Windows.Forms.PictureBox();
+            this.button2 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRecentAvatar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRecentImage)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -81,7 +89,7 @@
             // 
             // tbSearchUser
             // 
-            this.tbSearchUser.Location = new System.Drawing.Point(529, 25);
+            this.tbSearchUser.Location = new System.Drawing.Point(491, 25);
             this.tbSearchUser.Name = "tbSearchUser";
             this.tbSearchUser.Size = new System.Drawing.Size(100, 22);
             this.tbSearchUser.TabIndex = 4;
@@ -89,7 +97,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(436, 24);
+            this.label2.Location = new System.Drawing.Point(398, 24);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 17);
             this.label2.TabIndex = 5;
@@ -97,7 +105,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(648, 24);
+            this.btnSearch.Location = new System.Drawing.Point(615, 25);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 6;
@@ -109,42 +117,100 @@
             // 
             this.lbSearchUser.FormattingEnabled = true;
             this.lbSearchUser.ItemHeight = 16;
-            this.lbSearchUser.Location = new System.Drawing.Point(439, 91);
+            this.lbSearchUser.Location = new System.Drawing.Point(401, 70);
             this.lbSearchUser.Name = "lbSearchUser";
-            this.lbSearchUser.Size = new System.Drawing.Size(270, 116);
+            this.lbSearchUser.Size = new System.Drawing.Size(289, 116);
             this.lbSearchUser.TabIndex = 7;
             // 
             // btDownloadReccentImageofUser
             // 
-            this.btDownloadReccentImageofUser.Location = new System.Drawing.Point(439, 239);
+            this.btDownloadReccentImageofUser.Location = new System.Drawing.Point(435, 469);
             this.btDownloadReccentImageofUser.Name = "btDownloadReccentImageofUser";
-            this.btDownloadReccentImageofUser.Size = new System.Drawing.Size(270, 45);
+            this.btDownloadReccentImageofUser.Size = new System.Drawing.Size(183, 45);
             this.btDownloadReccentImageofUser.TabIndex = 8;
-            this.btDownloadReccentImageofUser.Text = "Download Recent Image of User";
+            this.btDownloadReccentImageofUser.Text = "Download ";
             this.btDownloadReccentImageofUser.UseVisualStyleBackColor = true;
             this.btDownloadReccentImageofUser.Click += new System.EventHandler(this.btDownloadReccentImageofUser_Click);
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(121, 333);
+            this.progressBar1.Location = new System.Drawing.Point(41, 336);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(302, 23);
+            this.progressBar1.Size = new System.Drawing.Size(175, 23);
             this.progressBar1.TabIndex = 9;
             // 
             // lbNotification
             // 
             this.lbNotification.AutoSize = true;
-            this.lbNotification.Location = new System.Drawing.Point(38, 333);
+            this.lbNotification.Location = new System.Drawing.Point(38, 267);
             this.lbNotification.Name = "lbNotification";
             this.lbNotification.Size = new System.Drawing.Size(65, 17);
             this.lbNotification.TabIndex = 10;
             this.lbNotification.Text = "Progress";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(706, 323);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(67, 17);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Comment";
+            // 
+            // tbComment
+            // 
+            this.tbComment.Location = new System.Drawing.Point(709, 371);
+            this.tbComment.Name = "tbComment";
+            this.tbComment.Size = new System.Drawing.Size(289, 22);
+            this.tbComment.TabIndex = 12;
+            // 
+            // btnPost
+            // 
+            this.btnPost.Location = new System.Drawing.Point(709, 418);
+            this.btnPost.Name = "btnPost";
+            this.btnPost.Size = new System.Drawing.Size(84, 36);
+            this.btnPost.TabIndex = 13;
+            this.btnPost.Text = "Post";
+            this.btnPost.UseVisualStyleBackColor = true;
+            this.btnPost.Click += new System.EventHandler(this.btnPost_Click);
+            // 
+            // pbRecentAvatar
+            // 
+            this.pbRecentAvatar.Location = new System.Drawing.Point(753, 25);
+            this.pbRecentAvatar.Name = "pbRecentAvatar";
+            this.pbRecentAvatar.Size = new System.Drawing.Size(209, 161);
+            this.pbRecentAvatar.TabIndex = 14;
+            this.pbRecentAvatar.TabStop = false;
+            // 
+            // pbRecentImage
+            // 
+            this.pbRecentImage.Location = new System.Drawing.Point(390, 323);
+            this.pbRecentImage.Name = "pbRecentImage";
+            this.pbRecentImage.Size = new System.Drawing.Size(289, 131);
+            this.pbRecentImage.TabIndex = 15;
+            this.pbRecentImage.TabStop = false;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(428, 278);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(190, 39);
+            this.button2.TabIndex = 17;
+            this.button2.Text = "Show recent publish image";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Information
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(721, 405);
+            this.ClientSize = new System.Drawing.Size(1084, 535);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.pbRecentImage);
+            this.Controls.Add(this.pbRecentAvatar);
+            this.Controls.Add(this.btnPost);
+            this.Controls.Add(this.tbComment);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.lbNotification);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.btDownloadReccentImageofUser);
@@ -159,6 +225,8 @@
             this.Name = "Information";
             this.Text = "Information";
             this.Load += new System.EventHandler(this.Information_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pbRecentAvatar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRecentImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -177,5 +245,11 @@
         private System.Windows.Forms.Button btDownloadReccentImageofUser;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label lbNotification;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox tbComment;
+        private System.Windows.Forms.Button btnPost;
+        private System.Windows.Forms.PictureBox pbRecentAvatar;
+        private System.Windows.Forms.PictureBox pbRecentImage;
+        private System.Windows.Forms.Button button2;
     }
 }
