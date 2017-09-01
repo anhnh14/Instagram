@@ -54,7 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="APIsHelper\ErrorAPis.cs" />
+    <Compile Include="Model\ErrorAPis.cs" />
     <Compile Include="APIsHelper\Global.cs" />
     <Compile Include="APIsHelper\Configuaration.cs" />
     <Compile Include="APIsHelper\Endpoint.cs" />
