@@ -15,14 +15,37 @@ namespace DemoInstagram
     public partial class Information : Form
     {
         Profile profile = new Profile();
-
         static HttpClient client = new HttpClient();
+
+        private System.Windows.Forms.Timer timer1;
+
+        #region Set auto run function loadComment
+        public void InitTimer()
+        {
+            timer1 = new System.Windows.Forms.Timer();
+            timer1.Tick += new EventHandler(timer1_Tick);
+            timer1.Interval = 2000; // in miliseconds
+            timer1.Start();
+        }
+        public void StopTimer()
+        {
+            if (timer1 != null)
+            {
+                timer1.Stop();
+            }
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            loadComments();
+        }
+        #endregion
+
         public Information(Profile profile)
         {
             InitializeComponent();
             this.profile = profile;
             lbUsername.Text = profile.full_name;
-            
+            lbPictureId.Hide();
         }
 
         private void Information_Load(object sender, EventArgs e)
@@ -30,6 +53,11 @@ namespace DemoInstagram
 
         }
 
+        /// <summary>
+        /// Download image of owner token
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_Download_Click(object sender, EventArgs e)
         {
             Picture picture = new Picture();
@@ -38,11 +66,14 @@ namespace DemoInstagram
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Download recent image published by owner token
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDownloaRecentPicture_Click(object sender, EventArgs e)
         {
             Endpoint endpoint = new Endpoint();
-            
-            
             try
             {
 
@@ -60,10 +91,18 @@ namespace DemoInstagram
 
         }
 
+        /// <summary>
+        /// Search User
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
             Endpoint endPoint = new Endpoint();
             pbRecentImage.Image = null;
+            lbPictureId.Text = null;
+            StopTimer();
+            lbComment.DataSource = null;
 
             string search = tbSearchUser.Text;
             try
@@ -88,6 +127,11 @@ namespace DemoInstagram
 
         }
 
+        /// <summary>
+        /// Down oad Recent image published by user from search
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btDownloadReccentImageofUser_Click(object sender, EventArgs e)
         {
             Endpoint endpoint = new Endpoint();
@@ -105,37 +149,75 @@ namespace DemoInstagram
 
         }
 
+        /// <summary>
+        /// Post comment
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnPost_Click(object sender, EventArgs e)
         {
             Endpoint endpoint = new Endpoint();
 
-            //Get User & picture
+            //Get User 
             Profile profile = (Profile)lbSearchUser.SelectedItem;
-            Picture picture = new Picture();
             if (profile != null)
             {
-                string userId = profile.id;
                
-                Task.Run(async () =>
+                string comment = tbComment.Text;
+                try
                 {
-                    picture = await endpoint.getImageRecentPublishByUser(userId);
-                }).Wait();
-            }
 
-            //Post comment
-            string comment = tbComment.Text;
-            try
-            {
-                endpoint.postComment(comment, picture.id);
+                    endpoint.postComment(comment, lbPictureId.Text);
+                   
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                
             }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            
-            
         }
 
+        /// <summary>
+        /// Show recent image published by user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnShow_Click(object sender, EventArgs e)
+        {
+            Endpoint endpoint = new Endpoint();
+            try
+            {
+                Profile profile = (Profile)lbSearchUser.SelectedItem;
+
+                if (profile != null)
+                {
+                    string userId = profile.id;
+                    Picture picture = new Picture();
+                    Task.Run(async () =>
+                    {
+                        picture = await endpoint.getImageRecentPublishByUser(userId);
+
+                    }).Wait();
+                    pbRecentImage.SizeMode = PictureBoxSizeMode.StretchImage;
+                    pbRecentImage.Load(picture.url);
+                    lbPictureId.Text = picture.id;
+                    loadComments();
+                    InitTimer();
+                }
+
+            }
+            catch
+            {
+                MessageBox.Show(Configuaration.ERROR_MESSAGE);
+            }
+        }
+
+        /// <summary>
+        /// Calculate progress
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             progressBar1.Value = 0;
@@ -143,10 +225,39 @@ namespace DemoInstagram
             progressBar1.Value = (int)e.BytesReceived / 100;
         }
 
+        /// <summary>
+        /// Show progress
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
             MessageBox.Show(Configuaration.DOWNLOAD_SUCCESS + Global.DIRECTORY);
             System.Diagnostics.Process.Start(Global.DIRECTORY);
+        }
+        
+        private void loadComments()
+        {
+            Endpoint endpoint = new Endpoint();
+            List<Comment> listComment = new List<Comment>();
+            Task.Run(async () =>
+            {
+                listComment = await endpoint.loadComments(lbPictureId.Text);
+            }).Wait();
+            List<DataListBox> listData = new List<DataListBox>();
+           
+            foreach(var item in listComment)
+            {
+                DataListBox data = new DataListBox();
+                data.id = item.id;
+                data.content = item.from.username + ": " + item.text;
+                listData.Add(data);
+            }
+
+            lbComment.DataSource = listData;
+            lbComment.DisplayMember = "content";
+            lbComment.ValueMember = "id";
+            lbComment.SelectedIndex = lbComment.Items.Count - 1;
         }
 
         void Download(Picture picture)
@@ -163,29 +274,6 @@ namespace DemoInstagram
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Endpoint endpoint = new Endpoint();
-            try
-            {
-                Profile profile = (Profile)lbSearchUser.SelectedItem;
-                if (profile != null)
-                {
-                    string userId = profile.id;
-                    Picture picture = new Picture();
-                    Task.Run(async () =>
-                    {
-                        picture = await endpoint.getImageRecentPublishByUser(userId);
-                    }).Wait();
-                    pbRecentImage.SizeMode = PictureBoxSizeMode.StretchImage;
-                    pbRecentImage.Load(picture.url);
-                }
-
-            }
-            catch
-            {
-                MessageBox.Show(Configuaration.ERROR_MESSAGE);
-            }
-        }
+       
     }
 }

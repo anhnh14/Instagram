@@ -150,5 +150,30 @@ namespace DemoInstagram.APIsHelper
             
            
         }
+
+        public async Task<List<Comment>> loadComments(string imageId)
+        {
+            string path = Configuaration.API_MEDIA + imageId+ "/comments?access_token=" + Global.TOKEN;
+            HttpResponseMessage response = await client.GetAsync(path);
+            List<Comment> listComment = new List<Comment>();
+            var jsonString = response.Content.ReadAsStringAsync().Result;
+            if (response.IsSuccessStatusCode)
+            {
+                dynamic stuff = JObject.Parse(jsonString);
+                foreach (var item in stuff["data"])
+                {
+                    var comment = JsonConvert.DeserializeObject<Comment>(item.ToString());
+                    listComment.Add(comment);
+                }
+            }
+            else
+            {
+                var jsonError = response.Content.ReadAsStringAsync().Result;
+                dynamic error = JObject.Parse(jsonError);
+                ErrorAPis errorApis = JsonConvert.DeserializeObject<ErrorAPis>(error["meta"].ToString());
+                throw new Exception(errorApis.error_message);
+            }
+            return listComment;
+        }
     }
 }

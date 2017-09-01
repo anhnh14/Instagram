@@ -44,7 +44,9 @@
             this.btnPost = new System.Windows.Forms.Button();
             this.pbRecentAvatar = new System.Windows.Forms.PictureBox();
             this.pbRecentImage = new System.Windows.Forms.PictureBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnShowRecentImageofUser = new System.Windows.Forms.Button();
+            this.lbComment = new System.Windows.Forms.ListBox();
+            this.lbPictureId = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbRecentAvatar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRecentImage)).BeginInit();
             this.SuspendLayout();
@@ -85,7 +87,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "Download Recent Image";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.btnDownloaRecentPicture_Click);
             // 
             // tbSearchUser
             // 
@@ -124,9 +126,9 @@
             // 
             // btDownloadReccentImageofUser
             // 
-            this.btDownloadReccentImageofUser.Location = new System.Drawing.Point(435, 469);
+            this.btDownloadReccentImageofUser.Location = new System.Drawing.Point(574, 267);
             this.btDownloadReccentImageofUser.Name = "btDownloadReccentImageofUser";
-            this.btDownloadReccentImageofUser.Size = new System.Drawing.Size(183, 45);
+            this.btDownloadReccentImageofUser.Size = new System.Drawing.Size(105, 45);
             this.btDownloadReccentImageofUser.TabIndex = 8;
             this.btDownloadReccentImageofUser.Text = "Download ";
             this.btDownloadReccentImageofUser.UseVisualStyleBackColor = true;
@@ -151,7 +153,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(706, 323);
+            this.label3.Location = new System.Drawing.Point(388, 472);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 17);
             this.label3.TabIndex = 11;
@@ -159,14 +161,14 @@
             // 
             // tbComment
             // 
-            this.tbComment.Location = new System.Drawing.Point(709, 371);
+            this.tbComment.Location = new System.Drawing.Point(391, 505);
             this.tbComment.Name = "tbComment";
             this.tbComment.Size = new System.Drawing.Size(289, 22);
             this.tbComment.TabIndex = 12;
             // 
             // btnPost
             // 
-            this.btnPost.Location = new System.Drawing.Point(709, 418);
+            this.btnPost.Location = new System.Drawing.Point(491, 545);
             this.btnPost.Name = "btnPost";
             this.btnPost.Size = new System.Drawing.Size(84, 36);
             this.btnPost.TabIndex = 13;
@@ -190,22 +192,42 @@
             this.pbRecentImage.TabIndex = 15;
             this.pbRecentImage.TabStop = false;
             // 
-            // button2
+            // btnShowRecentImageofUser
             // 
-            this.button2.Location = new System.Drawing.Point(428, 278);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(190, 39);
-            this.button2.TabIndex = 17;
-            this.button2.Text = "Show recent publish image";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnShowRecentImageofUser.Location = new System.Drawing.Point(391, 267);
+            this.btnShowRecentImageofUser.Name = "btnShowRecentImageofUser";
+            this.btnShowRecentImageofUser.Size = new System.Drawing.Size(94, 39);
+            this.btnShowRecentImageofUser.TabIndex = 17;
+            this.btnShowRecentImageofUser.Text = "Show recent publish image";
+            this.btnShowRecentImageofUser.UseVisualStyleBackColor = true;
+            this.btnShowRecentImageofUser.Click += new System.EventHandler(this.btnShow_Click);
+            // 
+            // lbComment
+            // 
+            this.lbComment.FormattingEnabled = true;
+            this.lbComment.ItemHeight = 16;
+            this.lbComment.Location = new System.Drawing.Point(753, 323);
+            this.lbComment.Name = "lbComment";
+            this.lbComment.Size = new System.Drawing.Size(228, 132);
+            this.lbComment.TabIndex = 18;
+            // 
+            // lbPictureId
+            // 
+            this.lbPictureId.AutoSize = true;
+            this.lbPictureId.Location = new System.Drawing.Point(482, 471);
+            this.lbPictureId.Name = "lbPictureId";
+            this.lbPictureId.Size = new System.Drawing.Size(46, 17);
+            this.lbPictureId.TabIndex = 19;
+            this.lbPictureId.Text = "label4";
             // 
             // Information
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1084, 535);
-            this.Controls.Add(this.button2);
+            this.ClientSize = new System.Drawing.Size(1130, 602);
+            this.Controls.Add(this.lbPictureId);
+            this.Controls.Add(this.lbComment);
+            this.Controls.Add(this.btnShowRecentImageofUser);
             this.Controls.Add(this.pbRecentImage);
             this.Controls.Add(this.pbRecentAvatar);
             this.Controls.Add(this.btnPost);
@@ -250,6 +272,8 @@
         private System.Windows.Forms.Button btnPost;
         private System.Windows.Forms.PictureBox pbRecentAvatar;
         private System.Windows.Forms.PictureBox pbRecentImage;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnShowRecentImageofUser;
+        private System.Windows.Forms.ListBox lbComment;
+        private System.Windows.Forms.Label lbPictureId;
     }
 }
