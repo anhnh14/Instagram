@@ -165,16 +165,8 @@ namespace DemoInstagram.APIsHelper
                     new KeyValuePair<string, string>(Configuaration.KEY_API_TEXT, comment)
                 });
                 HttpResponseMessage response = new HttpResponseMessage();
-                try
-                {
-                    response = await client.PostAsync(Configuaration.API_MEDIA + pictureId + "/comments", requestContent);
 
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-
+                response = await client.PostAsync(Configuaration.API_MEDIA + pictureId + "/comments", requestContent);
                 if (response.IsSuccessStatusCode)
                 {
                     return true;
@@ -221,7 +213,7 @@ namespace DemoInstagram.APIsHelper
             }
 
         }
-        
+
         /// <summary>
         /// Like image
         /// </summary>

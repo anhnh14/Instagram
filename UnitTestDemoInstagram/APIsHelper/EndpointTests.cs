@@ -218,5 +218,100 @@ namespace DemoInstagram.APIsHelper.Tests
             Assert.IsNull(picture);
             Assert.IsNotNull(exception);
         }
+
+        /// <summary>
+        /// Test case post comment success
+        /// </summary>
+        [TestMethod()]
+        public void postCommentTest()
+        {
+            Global.TOKEN = "39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
+            Endpoint endpoint = new Endpoint();
+            bool test = false;
+            Task.Run(async () =>
+            {
+                test = await endpoint.postComment("nice", "1593619934200949826_5964438851");
+            }).Wait();
+            Assert.IsTrue(test);
+        }
+
+        /// <summary>
+        /// Test case post commentwith more than 4 hashtag
+        /// </summary>
+        [TestMethod()]
+        public void postCommentTest1()
+        {
+            Global.TOKEN = "39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
+            Endpoint endpoint = new Endpoint();
+            bool test = false;
+            Task.Run(async () =>
+            {
+                test = await endpoint.postComment("#a #b #c #d #e", "1593619934200949826_5964438851");
+            }).Wait();
+            Assert.IsFalse(test);
+        }
+
+
+
+        /// <summary>
+        /// Test case load comment success
+        /// </summary>
+        [TestMethod()]
+        public void loadCommentsTest()
+        {
+            Global.TOKEN = "39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
+            Endpoint endpoint = new Endpoint();
+            List<Comment> listComment = new List<Comment>();
+            Task.Run(async () =>
+            {
+                listComment = await endpoint.loadComments("1593619934200949826_5964438851");
+            }).Wait();
+
+
+            Assert.IsTrue(listComment.Count > 0);
+        }
+
+        /// <summary>
+        /// Test case load comment fail
+        /// </summary>
+        [TestMethod()]
+        public void loadCommentsTest1()
+        {
+            Global.TOKEN = "5964438851.abb738d.8d2695e0f6624fc9ab2c37dd02f841cd";
+            Endpoint endpoint = new Endpoint();
+            List<Comment> listComment = new List<Comment>();
+            Exception exception = null;
+            Task.Run(async () =>
+            {
+                try
+                {
+                    listComment = await endpoint.loadComments("");
+                }catch(Exception ex)
+                {
+                    exception = ex;
+                }
+                
+            }).Wait();
+
+
+            Assert.IsNotNull(exception);
+        }
+
+
+        /// <summary>
+        /// Test like image success
+        /// </summary>
+        [TestMethod()]
+        public void likeImageTest()
+        {
+            Global.TOKEN = "5964438851.abb738d.8d2695e0f6624fc9ab2c37dd02f841cd";
+            Endpoint endpoint = new Endpoint();
+            Task.Run(() =>
+            {
+                endpoint.likeImage("1593619934200949826_5964438851");
+            });
+        }
+
+        
     }
 }
