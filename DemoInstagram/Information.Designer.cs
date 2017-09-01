@@ -201,7 +201,7 @@
             this.btnShowRecentImageofUser.Name = "btnShowRecentImageofUser";
             this.btnShowRecentImageofUser.Size = new System.Drawing.Size(94, 39);
             this.btnShowRecentImageofUser.TabIndex = 17;
-            this.btnShowRecentImageofUser.Text = "Show recent publish image";
+            this.btnShowRecentImageofUser.Text = "Show ";
             this.btnShowRecentImageofUser.UseVisualStyleBackColor = true;
             this.btnShowRecentImageofUser.Click += new System.EventHandler(this.btnShow_Click);
             // 

@@ -30,10 +30,7 @@ namespace DemoInstagram.APIsHelper
                     }
                     else
                     {
-                        var jsonError = response.Content.ReadAsStringAsync().Result;
-                        dynamic error = JObject.Parse(jsonError);
-                        ErrorAPis errorApis = JsonConvert.DeserializeObject<ErrorAPis>(error["meta"].ToString());
-                        throw new Exception(errorApis.error_message);
+                        ErrorRequest(response);
                     }
                     return profile;
                 }
@@ -71,10 +68,7 @@ namespace DemoInstagram.APIsHelper
                     }
                     else
                     {
-                        var jsonError = response.Content.ReadAsStringAsync().Result;
-                        dynamic error = JObject.Parse(jsonError);
-                        ErrorAPis errorApis = JsonConvert.DeserializeObject<ErrorAPis>(error[Configuaration.KEY_API_META].ToString());
-                        throw new Exception(errorApis.error_message);
+                        ErrorRequest(response);
                     }
                     return picture;
                 }
@@ -109,10 +103,7 @@ namespace DemoInstagram.APIsHelper
                     }
                     else
                     {
-                        var jsonError = response.Content.ReadAsStringAsync().Result;
-                        dynamic error = JObject.Parse(jsonError);
-                        ErrorAPis errorApis = JsonConvert.DeserializeObject<ErrorAPis>(error[Configuaration.KEY_API_META].ToString());
-                        throw new Exception(errorApis.error_message);
+                        ErrorRequest(response);
                     }
                     return listProfile;
                 }
@@ -150,10 +141,7 @@ namespace DemoInstagram.APIsHelper
                     }
                     else
                     {
-                        var jsonError = response.Content.ReadAsStringAsync().Result;
-                        dynamic error = JObject.Parse(jsonError);
-                        ErrorAPis errorApis = JsonConvert.DeserializeObject<ErrorAPis>(error[Configuaration.KEY_API_META].ToString());
-                        throw new Exception(errorApis.error_message);
+                        ErrorRequest(response);
                     }
                     return image;
                 }
@@ -226,17 +214,14 @@ namespace DemoInstagram.APIsHelper
                     }
                     else
                     {
-                        var jsonError = response.Content.ReadAsStringAsync().Result;
-                        dynamic error = JObject.Parse(jsonError);
-                        ErrorAPis errorApis = JsonConvert.DeserializeObject<ErrorAPis>(error[Configuaration.KEY_API_META].ToString());
-                        throw new Exception(errorApis.error_message);
+                        ErrorRequest(response);
                     }
                     return listComment;
                 }
             }
 
         }
-
+        
         /// <summary>
         /// Like image
         /// </summary>
@@ -258,6 +243,18 @@ namespace DemoInstagram.APIsHelper
                 }
             }
 
+        }
+
+        /// <summary>
+        /// process error response
+        /// </summary>
+        /// <param name="response">response from server</param>
+        private void ErrorRequest(HttpResponseMessage response)
+        {
+            var jsonError = response.Content.ReadAsStringAsync().Result;
+            dynamic error = JObject.Parse(jsonError);
+            ErrorAPis errorApis = JsonConvert.DeserializeObject<ErrorAPis>(error[Configuaration.KEY_API_META].ToString());
+            throw new Exception(errorApis.error_message);
         }
     }
 }
