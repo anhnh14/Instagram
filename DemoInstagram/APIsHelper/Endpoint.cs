@@ -175,5 +175,23 @@ namespace DemoInstagram.APIsHelper
             }
             return listComment;
         }
+
+        public async void likeImage(string pictureId)
+        {
+            var client = new HttpClient();
+
+            var requestContent = new FormUrlEncodedContent(new[] {
+                    new KeyValuePair<string, string>("access_token",Global.TOKEN),
+                });
+            try
+            {
+                HttpResponseMessage response = await client.PostAsync(Configuaration.API_MEDIA + pictureId + "/likes", requestContent);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

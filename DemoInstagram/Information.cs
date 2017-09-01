@@ -15,7 +15,7 @@ namespace DemoInstagram
     public partial class Information : Form
     {
         Profile profile = new Profile();
-        static HttpClient client = new HttpClient();
+       // static HttpClient client = new HttpClient();
 
         private System.Windows.Forms.Timer timer1;
 
@@ -166,9 +166,7 @@ namespace DemoInstagram
                 string comment = tbComment.Text;
                 try
                 {
-
                     endpoint.postComment(comment, lbPictureId.Text);
-                   
                 }
                 catch (Exception ex)
                 {
@@ -176,6 +174,7 @@ namespace DemoInstagram
                 }
                 
             }
+            tbComment.Text = "";
         }
 
         /// <summary>
@@ -274,6 +273,22 @@ namespace DemoInstagram
             }
         }
 
-       
+        private void btnLike_Click(object sender, EventArgs e)
+        {
+            Endpoint endpoint = new Endpoint();
+
+            if (!string.IsNullOrEmpty(lbPictureId.Text))
+            {
+                try
+                {
+                    endpoint.likeImage(lbPictureId.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+        }
     }
 }

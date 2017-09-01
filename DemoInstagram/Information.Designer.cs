@@ -47,6 +47,7 @@
             this.btnShowRecentImageofUser = new System.Windows.Forms.Button();
             this.lbComment = new System.Windows.Forms.ListBox();
             this.lbPictureId = new System.Windows.Forms.Label();
+            this.btnLike = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbRecentAvatar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRecentImage)).BeginInit();
             this.SuspendLayout();
@@ -126,9 +127,9 @@
             // 
             // btDownloadReccentImageofUser
             // 
-            this.btDownloadReccentImageofUser.Location = new System.Drawing.Point(574, 267);
+            this.btDownloadReccentImageofUser.Location = new System.Drawing.Point(491, 267);
             this.btDownloadReccentImageofUser.Name = "btDownloadReccentImageofUser";
-            this.btDownloadReccentImageofUser.Size = new System.Drawing.Size(105, 45);
+            this.btDownloadReccentImageofUser.Size = new System.Drawing.Size(105, 39);
             this.btDownloadReccentImageofUser.TabIndex = 8;
             this.btDownloadReccentImageofUser.Text = "Download ";
             this.btDownloadReccentImageofUser.UseVisualStyleBackColor = true;
@@ -220,11 +221,22 @@
             this.lbPictureId.TabIndex = 19;
             this.lbPictureId.Text = "label4";
             // 
+            // btnLike
+            // 
+            this.btnLike.Location = new System.Drawing.Point(605, 267);
+            this.btnLike.Name = "btnLike";
+            this.btnLike.Size = new System.Drawing.Size(75, 39);
+            this.btnLike.TabIndex = 20;
+            this.btnLike.Text = "Like";
+            this.btnLike.UseVisualStyleBackColor = true;
+            this.btnLike.Click += new System.EventHandler(this.btnLike_Click);
+            // 
             // Information
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1130, 602);
+            this.Controls.Add(this.btnLike);
             this.Controls.Add(this.lbPictureId);
             this.Controls.Add(this.lbComment);
             this.Controls.Add(this.btnShowRecentImageofUser);
@@ -275,5 +287,6 @@
         private System.Windows.Forms.Button btnShowRecentImageofUser;
         private System.Windows.Forms.ListBox lbComment;
         private System.Windows.Forms.Label lbPictureId;
+        private System.Windows.Forms.Button btnLike;
     }
 }
