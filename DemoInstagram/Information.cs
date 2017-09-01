@@ -218,18 +218,26 @@ namespace DemoInstagram
         private void btnLike_Click(object sender, EventArgs e)
         {
             Endpoint endpoint = new Endpoint();
-
+            bool checkSuccess = false;
             if (!string.IsNullOrEmpty(lbPictureId.Text))
             {
                 try
                 {
-                    endpoint.likeImage(lbPictureId.Text);
+                    Task.Run(async () =>
+                    {
+                        checkSuccess = await endpoint.likeImage(lbPictureId.Text);
+                    }).Wait();
+
+                   
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-
+                if (checkSuccess)
+                {
+                    MessageBox.Show(Configuaration.SUCCESS);
+                }
             }
         }
 

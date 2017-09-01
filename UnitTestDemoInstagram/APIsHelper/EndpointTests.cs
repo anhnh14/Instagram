@@ -304,14 +304,32 @@ namespace DemoInstagram.APIsHelper.Tests
         [TestMethod()]
         public void likeImageTest()
         {
-            Global.TOKEN = "5964438851.abb738d.8d2695e0f6624fc9ab2c37dd02f841cd";
+            Global.TOKEN = "39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
             Endpoint endpoint = new Endpoint();
-            Task.Run(() =>
+            bool testSuccess = false;
+            Task.Run(async () =>
             {
-                endpoint.likeImage("1593619934200949826_5964438851");
-            });
+                testSuccess = await endpoint.likeImage("1593619934200949826_5964438851");
+            }).Wait();
+
+            Assert.IsTrue(testSuccess);
         }
 
-        
+        /// <summary>
+        /// Test like image fail
+        /// </summary>
+        [TestMethod()]
+        public void likeImageTest1()
+        {
+            Global.TOKEN = "39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
+            Endpoint endpoint = new Endpoint();
+            bool testSuccess = false;
+            Task.Run(async () =>
+            {
+                testSuccess = await endpoint.likeImage("");
+            }).Wait();
+
+            Assert.IsFalse(testSuccess);
+        }
     }
 }

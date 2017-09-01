@@ -218,20 +218,22 @@ namespace DemoInstagram.APIsHelper
         /// Like image
         /// </summary>
         /// <param name="pictureId">id of image</param>
-        public async void likeImage(string pictureId)
+        public async Task<bool> likeImage(string pictureId)
         {
             using (var client = new HttpClient())
             {
                 var requestContent = new FormUrlEncodedContent(new[] {
                     new KeyValuePair<string, string>(Configuaration.ACCESS_TOKEN,Global.TOKEN),
                 });
-                try
+                HttpResponseMessage response =  await client.PostAsync(Configuaration.API_MEDIA + pictureId + "/likes", requestContent);
+
+                if (response.IsSuccessStatusCode)
                 {
-                    HttpResponseMessage response = await client.PostAsync(Configuaration.API_MEDIA + pictureId + "/likes", requestContent);
+                    return true;
                 }
-                catch (Exception ex)
+                else
                 {
-                    throw ex;
+                    return false;
                 }
             }
 
