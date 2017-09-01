@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,30 +13,6 @@ namespace DemoInstagram
     public partial class Information : Form
     {
         Profile profile = new Profile();
-       // static HttpClient client = new HttpClient();
-
-        private System.Windows.Forms.Timer timer1;
-
-        #region Set auto run function loadComment
-        public void InitTimer()
-        {
-            timer1 = new System.Windows.Forms.Timer();
-            timer1.Tick += new EventHandler(timer1_Tick);
-            timer1.Interval = 2000; // in miliseconds
-            timer1.Start();
-        }
-        public void StopTimer()
-        {
-            if (timer1 != null)
-            {
-                timer1.Stop();
-            }
-        }
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            loadComments();
-        }
-        #endregion
 
         public Information(Profile profile)
         {
@@ -101,7 +75,6 @@ namespace DemoInstagram
             Endpoint endPoint = new Endpoint();
             pbRecentImage.Image = null;
             lbPictureId.Text = null;
-            StopTimer();
             lbComment.DataSource = null;
 
             string search = tbSearchUser.Text;
@@ -113,9 +86,9 @@ namespace DemoInstagram
                     profile = await endPoint.searchUser(search);
                 }).Wait();
                 lbSearchUser.DataSource = profile;
-                lbSearchUser.DisplayMember = "full_name";
-                lbSearchUser.ValueMember = "id";
-                if(profile.Count > 0)
+                lbSearchUser.DisplayMember = Configuaration.KEY_API_FULL_NAME;
+                lbSearchUser.ValueMember = Configuaration.KEY_API_ID;
+                if (profile.Count > 0)
                 {
                     pbRecentAvatar.Load(profile[0].profile_picture);
                 }
@@ -140,7 +113,6 @@ namespace DemoInstagram
             try
             {
                 Download(picture);
-
             }
             catch
             {
@@ -162,19 +134,23 @@ namespace DemoInstagram
             Profile profile = (Profile)lbSearchUser.SelectedItem;
             if (profile != null)
             {
-               
                 string comment = tbComment.Text;
                 try
                 {
-                    endpoint.postComment(comment, lbPictureId.Text);
+                    Task.Run(async () =>
+                    {
+                        await endpoint.postComment(comment, lbPictureId.Text);
+                    }).Wait();
+
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-                
+
             }
             tbComment.Text = "";
+            loadComments();
         }
 
         /// <summary>
@@ -202,7 +178,6 @@ namespace DemoInstagram
                     pbRecentImage.Load(picture.url);
                     lbPictureId.Text = picture.id;
                     loadComments();
-                    InitTimer();
                 }
 
             }
@@ -217,7 +192,7 @@ namespace DemoInstagram
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        private void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             progressBar1.Value = 0;
             progressBar1.Maximum = (int)e.TotalBytesToReceive / 100;
@@ -229,50 +204,17 @@ namespace DemoInstagram
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        private void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
             MessageBox.Show(Configuaration.DOWNLOAD_SUCCESS + Global.DIRECTORY);
             System.Diagnostics.Process.Start(Global.DIRECTORY);
         }
-        
-        private void loadComments()
-        {
-            Endpoint endpoint = new Endpoint();
-            List<Comment> listComment = new List<Comment>();
-            Task.Run(async () =>
-            {
-                listComment = await endpoint.loadComments(lbPictureId.Text);
-            }).Wait();
-            List<DataListBox> listData = new List<DataListBox>();
-           
-            foreach(var item in listComment)
-            {
-                DataListBox data = new DataListBox();
-                data.id = item.id;
-                data.content = item.from.username + ": " + item.text;
-                listData.Add(data);
-            }
 
-            lbComment.DataSource = listData;
-            lbComment.DisplayMember = "content";
-            lbComment.ValueMember = "id";
-            lbComment.SelectedIndex = lbComment.Items.Count - 1;
-        }
-
-        void Download(Picture picture)
-        {
-            using (WebClient client = new WebClient())
-            {
-                if (picture.url != null)
-                {
-                    string name = picture.url.Split('/').LastOrDefault();
-                    client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
-                    client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                    client.DownloadFileAsync(new Uri(picture.url), Global.DIRECTORY + name);
-                }
-            }
-        }
-
+        /// <summary>
+        /// Like image
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLike_Click(object sender, EventArgs e)
         {
             Endpoint endpoint = new Endpoint();
@@ -290,5 +232,60 @@ namespace DemoInstagram
 
             }
         }
+
+        /// <summary>
+        /// Load comment from image
+        /// </summary>
+        private void loadComments()
+        {
+            Endpoint endpoint = new Endpoint();
+            List<Comment> listComment = new List<Comment>();
+            Task.Run(async () =>
+            {
+                try
+                {
+                    listComment = await endpoint.loadComments(lbPictureId.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }).Wait();
+            List<DataListBox> listData = new List<DataListBox>();
+
+            foreach (var item in listComment)
+            {
+                DataListBox data = new DataListBox();
+                data.id = item.id;
+                data.content = item.from.username + ": " + item.text;
+                listData.Add(data);
+            }
+
+            lbComment.DataSource = listData;
+            lbComment.DisplayMember = "content";
+            lbComment.ValueMember = "id";
+            lbComment.SelectedIndex = lbComment.Items.Count - 1;
+        }
+
+        /// <summary>
+        /// Download picture
+        /// </summary>
+        /// <param name="picture"></param>
+        private void Download(Picture picture)
+        {
+            using (WebClient client = new WebClient())
+            {
+                if (picture.url != null)
+                {
+                    string name = picture.url.Split('/').LastOrDefault();
+                    client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
+                    client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+                    client.DownloadFileAsync(new Uri(picture.url), Global.DIRECTORY + name);
+                }
+            }
+        }
+
+
     }
 }

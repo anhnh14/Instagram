@@ -48,6 +48,8 @@
             this.lbComment = new System.Windows.Forms.ListBox();
             this.lbPictureId = new System.Windows.Forms.Label();
             this.btnLike = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbRecentAvatar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRecentImage)).BeginInit();
             this.SuspendLayout();
@@ -127,7 +129,7 @@
             // 
             // btDownloadReccentImageofUser
             // 
-            this.btDownloadReccentImageofUser.Location = new System.Drawing.Point(491, 267);
+            this.btDownloadReccentImageofUser.Location = new System.Drawing.Point(491, 227);
             this.btDownloadReccentImageofUser.Name = "btDownloadReccentImageofUser";
             this.btDownloadReccentImageofUser.Size = new System.Drawing.Size(105, 39);
             this.btDownloadReccentImageofUser.TabIndex = 8;
@@ -156,9 +158,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(388, 472);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 17);
+            this.label3.Size = new System.Drawing.Size(103, 17);
             this.label3.TabIndex = 11;
-            this.label3.Text = "Comment";
+            this.label3.Text = "Wrire comment";
             // 
             // tbComment
             // 
@@ -195,7 +197,7 @@
             // 
             // btnShowRecentImageofUser
             // 
-            this.btnShowRecentImageofUser.Location = new System.Drawing.Point(391, 267);
+            this.btnShowRecentImageofUser.Location = new System.Drawing.Point(391, 227);
             this.btnShowRecentImageofUser.Name = "btnShowRecentImageofUser";
             this.btnShowRecentImageofUser.Size = new System.Drawing.Size(94, 39);
             this.btnShowRecentImageofUser.TabIndex = 17;
@@ -223,7 +225,7 @@
             // 
             // btnLike
             // 
-            this.btnLike.Location = new System.Drawing.Point(605, 267);
+            this.btnLike.Location = new System.Drawing.Point(605, 227);
             this.btnLike.Name = "btnLike";
             this.btnLike.Size = new System.Drawing.Size(75, 39);
             this.btnLike.TabIndex = 20;
@@ -231,11 +233,31 @@
             this.btnLike.UseVisualStyleBackColor = true;
             this.btnLike.Click += new System.EventHandler(this.btnLike_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(434, 286);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(211, 17);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "Recent image published by user";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(753, 286);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(74, 17);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Comments";
+            // 
             // Information
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1130, 602);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnLike);
             this.Controls.Add(this.lbPictureId);
             this.Controls.Add(this.lbComment);
@@ -288,5 +310,7 @@
         private System.Windows.Forms.ListBox lbComment;
         private System.Windows.Forms.Label lbPictureId;
         private System.Windows.Forms.Button btnLike;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }
