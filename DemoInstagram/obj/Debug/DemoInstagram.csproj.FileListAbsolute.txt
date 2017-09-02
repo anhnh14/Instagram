@@ -15,7 +15,16 @@ D:\Project\C#\DemoInstagram\DemoInstagram\obj\Debug\DemoInstagram.csprojResolveA
 D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\bin\Debug\DemoInstagram.exe.config
 D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\bin\Debug\DemoInstagram.exe
 D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\bin\Debug\DemoInstagram.pdb
+D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\bin\Debug\Microsoft.Practices.Unity.dll
+D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.dll
 D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\bin\Debug\Newtonsoft.Json.dll
+D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\bin\Debug\Microsoft.Practices.Unity.xml
+D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.xml
 D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\bin\Debug\Newtonsoft.Json.xml
 D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\obj\Debug\DemoInstagram.Form1.resources
 D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\obj\Debug\DemoInstagram.Information.resources
@@ -23,4 +32,3 @@ D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\obj\Debug\DemoInstagra
 D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\obj\Debug\DemoInstagram.csproj.GenerateResource.Cache
 D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\obj\Debug\DemoInstagram.exe
 D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\obj\Debug\DemoInstagram.pdb
-D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\obj\Debug\DemoInstagram.csprojResolveAssemblyReference.cache

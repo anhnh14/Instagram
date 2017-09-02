@@ -2,10 +2,13 @@
 using DemoInstagram.APIsHelper;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using DemoInstagram.Model;
+using DemoInstagram.Support;
+using DemoInstagram.APIsHelper.APIsInterface;
+using DemoInstagram.Business.Interface;
+using DemoInstagram.Business;
+using Microsoft.Practices.Unity;
 
 namespace DemoInstagram.APIsHelper.Tests
 {
@@ -19,7 +22,9 @@ namespace DemoInstagram.APIsHelper.Tests
         public void GetProfileTest()
         {
             Global.TOKEN = "39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
-            Endpoint endpoint = new Endpoint();
+            var container = UnityContainerSuppor.BuildUnityContainer();
+            var instance = container.Resolve<InstagramBussinessImpl>();
+            EndpointInstagram endpoint = new EndpointInstagram(instance);
             Profile profile = null;
             Task.Run(async () =>
             {
@@ -39,7 +44,9 @@ namespace DemoInstagram.APIsHelper.Tests
         {
             Global.TOKEN = "";
             Exception exception = null;
-            Endpoint endpoint = new Endpoint();
+            var container = UnityContainerSuppor.BuildUnityContainer();
+            var instance = container.Resolve<InstagramBussinessImpl>();
+            EndpointInstagram endpoint = new EndpointInstagram(instance);
             Profile profile = null;
             Task.Run(async () =>
             {
@@ -65,7 +72,9 @@ namespace DemoInstagram.APIsHelper.Tests
         public void SearchUserTest()
         {
             Global.TOKEN = "39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
-            Endpoint endpoint = new Endpoint();
+            var container = UnityContainerSuppor.BuildUnityContainer();
+            var instance = container.Resolve<InstagramBussinessImpl>();
+            EndpointInstagram endpoint = new EndpointInstagram(instance);
             List<Profile> listProfile = null;
             Task.Run(async () =>
             {
@@ -82,7 +91,9 @@ namespace DemoInstagram.APIsHelper.Tests
         public void SearchUserTest1()
         {
             Global.TOKEN = "";
-            Endpoint endpoint = new Endpoint();
+            var container = UnityContainerSuppor.BuildUnityContainer();
+            var instance = container.Resolve<InstagramBussinessImpl>();
+            EndpointInstagram endpoint = new EndpointInstagram(instance);
             Exception exception = null;
             List<Profile> listProfile = null;
             Task.Run(async () =>
@@ -108,7 +119,9 @@ namespace DemoInstagram.APIsHelper.Tests
         public void SearchUserTest2()
         {
             Global.TOKEN = "5964438851.abb738d.8d2695e0f6624fc9ab2c37dd02f841cd";
-            Endpoint endpoint = new Endpoint();
+            var container = UnityContainerSuppor.BuildUnityContainer();
+            var instance = container.Resolve<InstagramBussinessImpl>();
+            EndpointInstagram endpoint = new EndpointInstagram(instance);
             Exception exception = null;
             List<Profile> listProfile = null;
             Task.Run(async () =>
@@ -134,7 +147,9 @@ namespace DemoInstagram.APIsHelper.Tests
         public void GetRecentImageTest()
         {
             Global.TOKEN = "39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
-            Endpoint endpoint = new Endpoint();
+            var container = UnityContainerSuppor.BuildUnityContainer();
+            var instance = container.Resolve<InstagramBussinessImpl>();
+            EndpointInstagram endpoint = new EndpointInstagram(instance);
             Picture picture = null;
             Task.Run(async () =>
             {
@@ -152,7 +167,9 @@ namespace DemoInstagram.APIsHelper.Tests
         public void GetRecentImageTest1()
         {
             Global.TOKEN = "";
-            Endpoint endpoint = new Endpoint();
+            var container = UnityContainerSuppor.BuildUnityContainer();
+            var instance = container.Resolve<InstagramBussinessImpl>();
+            EndpointInstagram endpoint = new EndpointInstagram(instance);
             Picture picture = null;
             Exception exception = null;
             Task.Run(async () =>
@@ -180,7 +197,9 @@ namespace DemoInstagram.APIsHelper.Tests
         public void GetImageRecentPublishByUserTest()
         {
             Global.TOKEN = "39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
-            Endpoint endpoint = new Endpoint();
+            var container = UnityContainerSuppor.BuildUnityContainer();
+            var instance = container.Resolve<InstagramBussinessImpl>();
+            EndpointInstagram endpoint = new EndpointInstagram(instance);
             Picture picture = null;
             Task.Run(async () =>
             {
@@ -199,7 +218,9 @@ namespace DemoInstagram.APIsHelper.Tests
         public void GetImageRecentPublishByUserTest1()
         {
             Global.TOKEN = "";
-            Endpoint endpoint = new Endpoint();
+            var container = UnityContainerSuppor.BuildUnityContainer();
+            var instance = container.Resolve<InstagramBussinessImpl>();
+            EndpointInstagram endpoint = new EndpointInstagram(instance);
             Picture picture = null;
             Exception exception = null;
             Task.Run(async () =>
@@ -226,7 +247,9 @@ namespace DemoInstagram.APIsHelper.Tests
         public void PostCommentTest()
         {
             Global.TOKEN = "39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
-            Endpoint endpoint = new Endpoint();
+            var container = UnityContainerSuppor.BuildUnityContainer();
+            var instance = container.Resolve<InstagramBussinessImpl>();
+            EndpointInstagram endpoint = new EndpointInstagram(instance);
             bool test = false;
             Task.Run(async () =>
             {
@@ -242,7 +265,9 @@ namespace DemoInstagram.APIsHelper.Tests
         public void PostCommentTest1()
         {
             Global.TOKEN = "39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
-            Endpoint endpoint = new Endpoint();
+            var container = UnityContainerSuppor.BuildUnityContainer();
+            var instance = container.Resolve<InstagramBussinessImpl>();
+            EndpointInstagram endpoint = new EndpointInstagram(instance);
             bool test = false;
             Task.Run(async () =>
             {
@@ -258,7 +283,9 @@ namespace DemoInstagram.APIsHelper.Tests
         public void LoadCommentsTest()
         {
             Global.TOKEN = "39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
-            Endpoint endpoint = new Endpoint();
+            var container = UnityContainerSuppor.BuildUnityContainer();
+            var instance = container.Resolve<InstagramBussinessImpl>();
+            EndpointInstagram endpoint = new EndpointInstagram(instance);
             List<Comment> listComment = new List<Comment>();
             Task.Run(async () =>
             {
@@ -276,7 +303,9 @@ namespace DemoInstagram.APIsHelper.Tests
         public void LoadCommentsTest1()
         {
             Global.TOKEN = "5964438851.abb738d.8d2695e0f6624fc9ab2c37dd02f841cd";
-            Endpoint endpoint = new Endpoint();
+            var container = UnityContainerSuppor.BuildUnityContainer();
+            var instance = container.Resolve<InstagramBussinessImpl>();
+            EndpointInstagram endpoint = new EndpointInstagram(instance);
             List<Comment> listComment = new List<Comment>();
             Exception exception = null;
             Task.Run(async () =>
@@ -303,7 +332,9 @@ namespace DemoInstagram.APIsHelper.Tests
         public void LikeImageTest()
         {
             Global.TOKEN = "39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
-            Endpoint endpoint = new Endpoint();
+            var container = UnityContainerSuppor.BuildUnityContainer();
+            var instance = container.Resolve<InstagramBussinessImpl>();
+            EndpointInstagram endpoint = new EndpointInstagram(instance);
             bool testSuccess = false;
             Task.Run(async () =>
             {
@@ -320,7 +351,9 @@ namespace DemoInstagram.APIsHelper.Tests
         public void LikeImageTest1()
         {
             Global.TOKEN = "39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
-            Endpoint endpoint = new Endpoint();
+            var container = UnityContainerSuppor.BuildUnityContainer();
+            var instance = container.Resolve<InstagramBussinessImpl>();
+            EndpointInstagram endpoint = new EndpointInstagram(instance);
             bool testSuccess = false;
             Task.Run(async () =>
             {

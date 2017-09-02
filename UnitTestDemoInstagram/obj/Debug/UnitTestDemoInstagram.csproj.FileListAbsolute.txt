@@ -10,8 +10,17 @@ D:\Project\C#\DemoInstagram\UnitTestDemoInstagram\obj\Debug\UnitTestDemoInstagra
 D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\bin\Debug\UnitTestDemoInstagram.dll
 D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\bin\Debug\UnitTestDemoInstagram.pdb
 D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\bin\Debug\DemoInstagram.exe
+D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\bin\Debug\Microsoft.Practices.Unity.dll
+D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.dll
 D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\bin\Debug\Newtonsoft.Json.dll
 D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\bin\Debug\DemoInstagram.pdb
+D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\bin\Debug\Microsoft.Practices.Unity.xml
+D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.xml
 D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\bin\Debug\Newtonsoft.Json.xml
 D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\obj\Debug\UnitTestDemoInstagram.csprojResolveAssemblyReference.cache
 D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\obj\Debug\UnitTestDemoInstagram.dll
