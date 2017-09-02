@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -45,17 +46,13 @@ namespace DemoInstagram
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnDownloaRecentPicture_Click(object sender, EventArgs e)
+        private async void btnDownloaRecentPicture_Click(object sender, EventArgs e)
         {
             Endpoint endpoint = new Endpoint();
             try
             {
-
-                Picture recentPicture = new Picture();
-                Task.Run(async () =>
-                {
-                    recentPicture = await endpoint.GetRecentImage();
-                }).Wait();
+                Task<Picture> getPicture = endpoint.GetRecentImage();
+                Picture recentPicture = await getPicture;
                 Download(recentPicture);
             }
             catch (Exception ex)
@@ -70,7 +67,7 @@ namespace DemoInstagram
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSearch_Click(object sender, EventArgs e)
+        private async void btnSearch_Click(object sender, EventArgs e)
         {
             Endpoint endPoint = new Endpoint();
             pbRecentImage.Image = null;
@@ -80,17 +77,18 @@ namespace DemoInstagram
             string search = tbSearchUser.Text;
             try
             {
-                List<Profile> profile = new List<Profile>();
-                Task.Run(async () =>
-                {
-                    profile = await endPoint.SearchUser(search);
-                }).Wait();
-                lbSearchUser.DataSource = profile;
+                List<Profile> listProfile = new List<Profile>();
+
+                listProfile = await endPoint.SearchUser(search);
+                Task<List<Profile>> getListProfile = endPoint.SearchUser(search);
+
+                listProfile = await getListProfile;
+                lbSearchUser.DataSource = listProfile;
                 lbSearchUser.DisplayMember = Configuaration.KEY_API_FULL_NAME;
                 lbSearchUser.ValueMember = Configuaration.KEY_API_ID;
-                if (profile.Count > 0)
+                if (listProfile.Count > 0)
                 {
-                    pbRecentAvatar.Load(profile[0].profile_picture);
+                    pbRecentAvatar.Load(listProfile.FirstOrDefault().profile_picture);
                 }
             }
             catch (Exception ex)
@@ -126,7 +124,7 @@ namespace DemoInstagram
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnPost_Click(object sender, EventArgs e)
+        private async void btnPost_Click(object sender, EventArgs e)
         {
             Endpoint endpoint = new Endpoint();
 
@@ -137,17 +135,13 @@ namespace DemoInstagram
                 string comment = tbComment.Text;
                 try
                 {
-                    Task.Run(async () =>
-                    {
-                        await endpoint.PostComment(comment, lbPictureId.Text);
-                    }).Wait();
-
+                    Task<bool> post = endpoint.PostComment(comment, lbPictureId.Text);
+                    await post;
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.InnerException.Message);
                 }
-
             }
             tbComment.Text = "";
             loadComments();
@@ -158,7 +152,7 @@ namespace DemoInstagram
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnShow_Click(object sender, EventArgs e)
+        private async void btnShow_Click(object sender, EventArgs e)
         {
             Endpoint endpoint = new Endpoint();
             try
@@ -168,12 +162,9 @@ namespace DemoInstagram
                 if (profile != null)
                 {
                     string userId = profile.id;
-                    Picture picture = new Picture();
-                    Task.Run(async () =>
-                    {
-                        picture = await endpoint.GetImageRecentPublishByUser(userId);
 
-                    }).Wait();
+                    Task<Picture> getPicture = endpoint.GetImageRecentPublishByUser(userId);
+                    Picture picture = await getPicture;
                     pbRecentImage.SizeMode = PictureBoxSizeMode.StretchImage;
                     pbRecentImage.Load(picture.url);
                     lbPictureId.Text = picture.id;
@@ -215,7 +206,7 @@ namespace DemoInstagram
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnLike_Click(object sender, EventArgs e)
+        private async void btnLike_Click(object sender, EventArgs e)
         {
             Endpoint endpoint = new Endpoint();
             bool checkSuccess = false;
@@ -223,12 +214,8 @@ namespace DemoInstagram
             {
                 try
                 {
-                    Task.Run(async () =>
-                    {
-                        checkSuccess = await endpoint.LikeImage(lbPictureId.Text);
-                    }).Wait();
-
-                   
+                    Task<bool> like = endpoint.LikeImage(lbPictureId.Text);
+                    await like;
                 }
                 catch (Exception ex)
                 {
@@ -244,22 +231,22 @@ namespace DemoInstagram
         /// <summary>
         /// Load comment from image
         /// </summary>
-        private void loadComments()
+        private async void loadComments()
         {
             Endpoint endpoint = new Endpoint();
             List<Comment> listComment = new List<Comment>();
-            Task.Run(async () =>
-            {
-                try
-                {
-                    listComment = await endpoint.LoadComments(lbPictureId.Text);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
 
-            }).Wait();
+            try
+            {
+                Task<List<Comment>> getListComment = endpoint.LoadComments(lbPictureId.Text);
+                listComment = await getListComment;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
             List<DataListBox> listData = new List<DataListBox>();
 
             foreach (var item in listComment)
