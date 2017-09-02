@@ -16,14 +16,14 @@ namespace DemoInstagram.APIsHelper.Tests
         /// Test case success
         /// </summary>
         [TestMethod()]
-        public void getProfileTest()
+        public void GetProfileTest()
         {
             Global.TOKEN = "39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
             Endpoint endpoint = new Endpoint();
             Profile profile = null;
             Task.Run(async () =>
             {
-                profile = await endpoint.getProfile();
+                profile = await endpoint.GetProfile();
             }).GetAwaiter().GetResult();
 
             Assert.IsNotNull(profile);
@@ -35,7 +35,7 @@ namespace DemoInstagram.APIsHelper.Tests
         /// Test case empty token
         /// </summary>
         [TestMethod]
-        public void getProfileTest1()
+        public void GetProfileTest1()
         {
             Global.TOKEN = "";
             Exception exception = null;
@@ -45,7 +45,7 @@ namespace DemoInstagram.APIsHelper.Tests
             {
                 try
                 {
-                    profile = await endpoint.getProfile();
+                    profile = await endpoint.GetProfile();
                 }
                 catch (Exception ex)
                 {
@@ -62,14 +62,14 @@ namespace DemoInstagram.APIsHelper.Tests
         /// Test case search user with valid token
         /// </summary>
         [TestMethod()]
-        public void searchUserTest()
+        public void SearchUserTest()
         {
             Global.TOKEN = "39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
             Endpoint endpoint = new Endpoint();
             List<Profile> listProfile = null;
             Task.Run(async () =>
             {
-                listProfile = await endpoint.searchUser("anh");
+                listProfile = await endpoint.SearchUser("anh");
             }).GetAwaiter().GetResult();
 
             Assert.IsTrue(listProfile.Count > 0);
@@ -79,7 +79,7 @@ namespace DemoInstagram.APIsHelper.Tests
         /// Test search User with empty token
         /// </summary>
         [TestMethod]
-        public void searchUserTest1()
+        public void SearchUserTest1()
         {
             Global.TOKEN = "";
             Endpoint endpoint = new Endpoint();
@@ -89,7 +89,7 @@ namespace DemoInstagram.APIsHelper.Tests
             {
                 try
                 {
-                    listProfile = await endpoint.searchUser("anh");
+                    listProfile = await endpoint.SearchUser("anh");
                 }
                 catch (Exception ex)
                 {
@@ -105,7 +105,7 @@ namespace DemoInstagram.APIsHelper.Tests
         /// Test search User with token not authorize for this function
         /// </summary>
         [TestMethod]
-        public void searchUserTest2()
+        public void SearchUserTest2()
         {
             Global.TOKEN = "5964438851.abb738d.8d2695e0f6624fc9ab2c37dd02f841cd";
             Endpoint endpoint = new Endpoint();
@@ -115,7 +115,7 @@ namespace DemoInstagram.APIsHelper.Tests
             {
                 try
                 {
-                    listProfile = await endpoint.searchUser("anh");
+                    listProfile = await endpoint.SearchUser("anh");
                 }
                 catch (Exception ex)
                 {
@@ -131,14 +131,14 @@ namespace DemoInstagram.APIsHelper.Tests
         /// Test case get recent images publish by onwer token
         /// </summary>
         [TestMethod()]
-        public void getRecentImageTest()
+        public void GetRecentImageTest()
         {
             Global.TOKEN = "39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
             Endpoint endpoint = new Endpoint();
             Picture picture = null;
             Task.Run(async () =>
             {
-                picture = await endpoint.getRecentImage();
+                picture = await endpoint.GetRecentImage();
             }).GetAwaiter().GetResult();
 
             Assert.IsNotNull(picture);
@@ -149,7 +149,7 @@ namespace DemoInstagram.APIsHelper.Tests
         /// Test case get recent image with empty token
         /// </summary>
         [TestMethod()]
-        public void getRecentImageTest1()
+        public void GetRecentImageTest1()
         {
             Global.TOKEN = "";
             Endpoint endpoint = new Endpoint();
@@ -159,7 +159,7 @@ namespace DemoInstagram.APIsHelper.Tests
             {
                 try
                 {
-                    picture = await endpoint.getRecentImage();
+                    picture = await endpoint.GetRecentImage();
                 }
                 catch (Exception ex)
                 {
@@ -177,7 +177,7 @@ namespace DemoInstagram.APIsHelper.Tests
         /// Test case get recent image publish by user with valid token
         /// </summary>
         [TestMethod()]
-        public void getImageRecentPublishByUserTest()
+        public void GetImageRecentPublishByUserTest()
         {
             Global.TOKEN = "39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
             Endpoint endpoint = new Endpoint();
@@ -185,7 +185,7 @@ namespace DemoInstagram.APIsHelper.Tests
             Task.Run(async () =>
             {
 
-                picture = await endpoint.getImageRecentPublishByUser("5964438851");
+                picture = await endpoint.GetImageRecentPublishByUser("5964438851");
 
 
             }).GetAwaiter().GetResult();
@@ -196,7 +196,7 @@ namespace DemoInstagram.APIsHelper.Tests
         /// Test case get recent image publish by user with empty token
         /// </summary>
         [TestMethod()]
-        public void getImageRecentPublishByUserTest1()
+        public void GetImageRecentPublishByUserTest1()
         {
             Global.TOKEN = "";
             Endpoint endpoint = new Endpoint();
@@ -206,7 +206,7 @@ namespace DemoInstagram.APIsHelper.Tests
             {
                 try
                 {
-                    picture = await endpoint.getImageRecentPublishByUser("5964438851");
+                    picture = await endpoint.GetImageRecentPublishByUser("5964438851");
                 }
                 catch (Exception ex)
                 {
@@ -223,14 +223,14 @@ namespace DemoInstagram.APIsHelper.Tests
         /// Test case post comment success
         /// </summary>
         [TestMethod()]
-        public void postCommentTest()
+        public void PostCommentTest()
         {
             Global.TOKEN = "39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
             Endpoint endpoint = new Endpoint();
             bool test = false;
             Task.Run(async () =>
             {
-                test = await endpoint.postComment("nice", "1593619934200949826_5964438851");
+                test = await endpoint.PostComment("nice", "1593619934200949826_5964438851");
             }).Wait();
             Assert.IsTrue(test);
         }
@@ -239,32 +239,30 @@ namespace DemoInstagram.APIsHelper.Tests
         /// Test case post commentwith more than 4 hashtag
         /// </summary>
         [TestMethod()]
-        public void postCommentTest1()
+        public void PostCommentTest1()
         {
             Global.TOKEN = "39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
             Endpoint endpoint = new Endpoint();
             bool test = false;
             Task.Run(async () =>
             {
-                test = await endpoint.postComment("#a #b #c #d #e", "1593619934200949826_5964438851");
+                test = await endpoint.PostComment("#a #b #c #d #e", "1593619934200949826_5964438851");
             }).Wait();
             Assert.IsFalse(test);
         }
-
-
 
         /// <summary>
         /// Test case load comment success
         /// </summary>
         [TestMethod()]
-        public void loadCommentsTest()
+        public void LoadCommentsTest()
         {
             Global.TOKEN = "39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
             Endpoint endpoint = new Endpoint();
             List<Comment> listComment = new List<Comment>();
             Task.Run(async () =>
             {
-                listComment = await endpoint.loadComments("1593619934200949826_5964438851");
+                listComment = await endpoint.LoadComments("1593619934200949826_5964438851");
             }).Wait();
 
 
@@ -275,7 +273,7 @@ namespace DemoInstagram.APIsHelper.Tests
         /// Test case load comment fail
         /// </summary>
         [TestMethod()]
-        public void loadCommentsTest1()
+        public void LoadCommentsTest1()
         {
             Global.TOKEN = "5964438851.abb738d.8d2695e0f6624fc9ab2c37dd02f841cd";
             Endpoint endpoint = new Endpoint();
@@ -285,7 +283,7 @@ namespace DemoInstagram.APIsHelper.Tests
             {
                 try
                 {
-                    listComment = await endpoint.loadComments("");
+                    listComment = await endpoint.LoadComments("");
                 }catch(Exception ex)
                 {
                     exception = ex;
@@ -302,14 +300,14 @@ namespace DemoInstagram.APIsHelper.Tests
         /// Test like image success
         /// </summary>
         [TestMethod()]
-        public void likeImageTest()
+        public void LikeImageTest()
         {
             Global.TOKEN = "39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
             Endpoint endpoint = new Endpoint();
             bool testSuccess = false;
             Task.Run(async () =>
             {
-                testSuccess = await endpoint.likeImage("1593619934200949826_5964438851");
+                testSuccess = await endpoint.LikeImage("1593619934200949826_5964438851");
             }).Wait();
 
             Assert.IsTrue(testSuccess);
@@ -319,14 +317,14 @@ namespace DemoInstagram.APIsHelper.Tests
         /// Test like image fail
         /// </summary>
         [TestMethod()]
-        public void likeImageTest1()
+        public void LikeImageTest1()
         {
             Global.TOKEN = "39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
             Endpoint endpoint = new Endpoint();
             bool testSuccess = false;
             Task.Run(async () =>
             {
-                testSuccess = await endpoint.likeImage("");
+                testSuccess = await endpoint.LikeImage("");
             }).Wait();
 
             Assert.IsFalse(testSuccess);

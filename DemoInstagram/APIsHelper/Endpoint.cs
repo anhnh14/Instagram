@@ -14,7 +14,7 @@ namespace DemoInstagram.APIsHelper
         /// Get profile about owner of the access_token. 
         /// </summary>
         /// <returns>Profile</returns>
-        public async Task<Profile> getProfile()
+        public async Task<Profile> GetProfile()
         {
             string path = Configuaration.API_USER + "self/?access_token=" + Global.TOKEN;
             using (var client = new HttpClient())
@@ -43,7 +43,7 @@ namespace DemoInstagram.APIsHelper
         /// Get the most recent media published by the owner of the access_token. 
         /// </summary>
         /// <returns>Picture</returns>
-        public async Task<Picture> getRecentImage()
+        public async Task<Picture> GetRecentImage()
         {
             string path = Configuaration.API_USER + "self/media/recent?access_token=" + Global.TOKEN;
             using (var client = new HttpClient())
@@ -82,7 +82,7 @@ namespace DemoInstagram.APIsHelper
         /// </summary>
         /// <param name="userName">input name of user</param>
         /// <returns>List of user</returns>
-        public async Task<List<Profile>> searchUser(string userName)
+        public async Task<List<Profile>> SearchUser(string userName)
         {
             string path = Configuaration.API_USER + "search?q=" + userName + "&access_token=" + Global.TOKEN;
             using (var client = new HttpClient())
@@ -116,7 +116,7 @@ namespace DemoInstagram.APIsHelper
         /// </summary>
         /// <param name="userId">user id from instagram</param>
         /// <returns>picture</returns>
-        public async Task<Picture> getImageRecentPublishByUser(string userId)
+        public async Task<Picture> GetImageRecentPublishByUser(string userId)
         {
             string path = Configuaration.API_USER + userId + "/media/recent/?access_token=" + Global.TOKEN;
             using (var client = new HttpClient())
@@ -156,7 +156,7 @@ namespace DemoInstagram.APIsHelper
         /// <param name="comment">content of comment</param>
         /// <param name="pictureId">id of image</param>
         /// <returns>true if post comment success else return false</returns>
-        public async Task<bool> postComment(string comment, string pictureId)
+        public async Task<bool> PostComment(string comment, string pictureId)
         {
             using (var client = new HttpClient())
             {
@@ -186,7 +186,7 @@ namespace DemoInstagram.APIsHelper
         /// </summary>
         /// <param name="imageId">id of image</param>
         /// <returns>List comment</returns>
-        public async Task<List<Comment>> loadComments(string imageId)
+        public async Task<List<Comment>> LoadComments(string imageId)
         {
             string path = Configuaration.API_MEDIA + imageId + "/comments?access_token=" + Global.TOKEN;
             using (var client = new HttpClient())
@@ -218,7 +218,7 @@ namespace DemoInstagram.APIsHelper
         /// Like image
         /// </summary>
         /// <param name="pictureId">id of image</param>
-        public async Task<bool> likeImage(string pictureId)
+        public async Task<bool> LikeImage(string pictureId)
         {
             using (var client = new HttpClient())
             {

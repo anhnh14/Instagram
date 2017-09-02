@@ -25,7 +25,7 @@ namespace DemoInstagram
                 Global.TOKEN = tbToken.Text;
                 Task.Run(async () =>
                 {
-                    profile = await endpoint.getProfile();
+                    profile = await endpoint.GetProfile();
                 }).GetAwaiter().GetResult();
                 
             }

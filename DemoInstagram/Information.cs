@@ -54,7 +54,7 @@ namespace DemoInstagram
                 Picture recentPicture = new Picture();
                 Task.Run(async () =>
                 {
-                    recentPicture = await endpoint.getRecentImage();
+                    recentPicture = await endpoint.GetRecentImage();
                 }).Wait();
                 Download(recentPicture);
             }
@@ -83,7 +83,7 @@ namespace DemoInstagram
                 List<Profile> profile = new List<Profile>();
                 Task.Run(async () =>
                 {
-                    profile = await endPoint.searchUser(search);
+                    profile = await endPoint.SearchUser(search);
                 }).Wait();
                 lbSearchUser.DataSource = profile;
                 lbSearchUser.DisplayMember = Configuaration.KEY_API_FULL_NAME;
@@ -95,7 +95,7 @@ namespace DemoInstagram
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.InnerException.Message);
             }
 
         }
@@ -139,7 +139,7 @@ namespace DemoInstagram
                 {
                     Task.Run(async () =>
                     {
-                        await endpoint.postComment(comment, lbPictureId.Text);
+                        await endpoint.PostComment(comment, lbPictureId.Text);
                     }).Wait();
 
                 }
@@ -171,7 +171,7 @@ namespace DemoInstagram
                     Picture picture = new Picture();
                     Task.Run(async () =>
                     {
-                        picture = await endpoint.getImageRecentPublishByUser(userId);
+                        picture = await endpoint.GetImageRecentPublishByUser(userId);
 
                     }).Wait();
                     pbRecentImage.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -225,7 +225,7 @@ namespace DemoInstagram
                 {
                     Task.Run(async () =>
                     {
-                        checkSuccess = await endpoint.likeImage(lbPictureId.Text);
+                        checkSuccess = await endpoint.LikeImage(lbPictureId.Text);
                     }).Wait();
 
                    
@@ -252,7 +252,7 @@ namespace DemoInstagram
             {
                 try
                 {
-                    listComment = await endpoint.loadComments(lbPictureId.Text);
+                    listComment = await endpoint.LoadComments(lbPictureId.Text);
                 }
                 catch (Exception ex)
                 {
