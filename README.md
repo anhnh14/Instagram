@@ -18,7 +18,7 @@ How to get token:
 - Step 2: click Register your application
 - Step 3: Follow instruction from instagram to get token
 # Technologies
-- Win form
+- Winform
 - C#
 - Unity (Dependency injection)
 - MS Test (Unit test)
