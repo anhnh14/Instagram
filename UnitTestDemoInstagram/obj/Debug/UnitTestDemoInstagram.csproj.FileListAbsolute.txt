@@ -7,7 +7,6 @@ D:\Project\C#\DemoInstagram\UnitTestDemoInstagram\bin\Debug\Newtonsoft.Json.xml
 D:\Project\C#\DemoInstagram\UnitTestDemoInstagram\obj\Debug\UnitTestDemoInstagram.csprojResolveAssemblyReference.cache
 D:\Project\C#\DemoInstagram\UnitTestDemoInstagram\obj\Debug\UnitTestDemoInstagram.dll
 D:\Project\C#\DemoInstagram\UnitTestDemoInstagram\obj\Debug\UnitTestDemoInstagram.pdb
-D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\obj\Debug\UnitTestDemoInstagram.csprojResolveAssemblyReference.cache
 D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\bin\Debug\UnitTestDemoInstagram.dll.config
 D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\bin\Debug\UnitTestDemoInstagram.dll
 D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\bin\Debug\UnitTestDemoInstagram.pdb
@@ -23,5 +22,6 @@ D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\bin\Debug\Micr
 D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.xml
 D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
 D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\bin\Debug\Newtonsoft.Json.xml
+D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\obj\Debug\UnitTestDemoInstagram.csprojResolveAssemblyReference.cache
 D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\obj\Debug\UnitTestDemoInstagram.dll
 D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestDemoInstagram\obj\Debug\UnitTestDemoInstagram.pdb

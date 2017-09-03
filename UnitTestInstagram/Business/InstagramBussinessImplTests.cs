@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Moq;
 using DemoInstagram.Business.Interface;
 using DemoInstagram.APIsHelper;
+using DemoInstagram.APIsHelper.APIsInterface;
 
 namespace DemoInstagram.Business.Tests
 {
@@ -33,7 +34,7 @@ namespace DemoInstagram.Business.Tests
         [TestMethod()]
         public void ProcessListProfileTest()
         {
-
+            Mock<IEndpoint> endpoint 
             IBusiness business = new InstagramBussinessImpl();
            // List <Profile> listProfile = business.ProcessListProfile(json);
 

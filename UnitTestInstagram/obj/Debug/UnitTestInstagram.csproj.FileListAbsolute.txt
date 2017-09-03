@@ -1,3 +1,4 @@
+D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestInstagram\bin\Debug\UnitTestInstagram.dll.config
 D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestInstagram\bin\Debug\UnitTestInstagram.dll
 D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestInstagram\bin\Debug\UnitTestInstagram.pdb
 D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestInstagram\bin\Debug\Castle.Core.dll
@@ -17,4 +18,3 @@ D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestInstagram\bin\Debug\Newtonso
 D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestInstagram\obj\Debug\UnitTestInstagram.csprojResolveAssemblyReference.cache
 D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestInstagram\obj\Debug\UnitTestInstagram.dll
 D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestInstagram\obj\Debug\UnitTestInstagram.pdb
-D:\Project\C#\TestInstagramGitHub\Instagram\UnitTestInstagram\bin\Debug\UnitTestInstagram.dll.config
