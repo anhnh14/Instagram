@@ -4,8 +4,8 @@ using Newtonsoft.Json;
 using DemoInstagram.APIsHelper;
 using Newtonsoft.Json.Linq;
 using DemoInstagram.Model;
-using System;
 using System.Net.Http;
+using System;
 
 namespace DemoInstagram.Business
 {
@@ -30,12 +30,19 @@ namespace DemoInstagram.Business
         public List<Comment> LoadComment(string json)
         {
             List<Comment> listComment = new List<Comment>();
-            dynamic stuff = JObject.Parse(json);
-            foreach (var item in stuff[Configuaration.KEY_API_DATA])
+            try
             {
-                var comment = JsonConvert.DeserializeObject<Comment>(item.ToString());
-                listComment.Add(comment);
+                dynamic stuff = JObject.Parse(json);
+                foreach (var item in stuff[Configuaration.KEY_API_DATA])
+                {
+                    var comment = JsonConvert.DeserializeObject<Comment>(item.ToString());
+                    listComment.Add(comment);
+                }
+            }catch(Exception ex)
+            {
+                throw ex;
             }
+            
             return listComment;
         }
 
@@ -47,13 +54,21 @@ namespace DemoInstagram.Business
         public List<Profile> ProcessListProfile(string json)
         {
             List<Profile> listProfile = new List<Profile>();
-            
-            dynamic stuff = JObject.Parse(json);
-            foreach (var item in stuff[Configuaration.KEY_API_DATA])
+            try
             {
-                Profile profile = JsonConvert.DeserializeObject<Profile>(item.ToString());
-                listProfile.Add(profile);
+                dynamic stuff = JObject.Parse(json);
+                foreach (var item in stuff[Configuaration.KEY_API_DATA])
+                {
+                    Profile profile = JsonConvert.DeserializeObject<Profile>(item.ToString());
+                    listProfile.Add(profile);
+                }
             }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            
+           
             return listProfile;
         }
 
@@ -65,16 +80,23 @@ namespace DemoInstagram.Business
         public Picture ProcessPicture(string json)
         {
             Picture picture = new Picture();
-            dynamic stuff = JObject.Parse(json);
-            var v = stuff[Configuaration.KEY_API_DATA];
-            JArray v1 = JArray.Parse(v.ToString());
-            if (v1.Count > 0)
+            try
             {
-                string id = v1[0][Configuaration.KEY_API_ID].ToString();
-                var standImage = v1[0][Configuaration.KEY_API_IMAGES][Configuaration.KEY_API_IMAGES_STANDARD_RESOLUTION];
-                picture = JsonConvert.DeserializeObject<Picture>(standImage.ToString());
-                picture.id = id;
+                dynamic stuff = JObject.Parse(json);
+                var v = stuff[Configuaration.KEY_API_DATA];
+                JArray v1 = JArray.Parse(v.ToString());
+                if (v1.Count > 0)
+                {
+                    string id = v1[0][Configuaration.KEY_API_ID].ToString();
+                    var standImage = v1[0][Configuaration.KEY_API_IMAGES][Configuaration.KEY_API_IMAGES_STANDARD_RESOLUTION];
+                    picture = JsonConvert.DeserializeObject<Picture>(standImage.ToString());
+                    picture.id = id;
+                }
+            }catch(Exception ex)
+            {
+                throw ex;
             }
+            
             return picture;
         }
 

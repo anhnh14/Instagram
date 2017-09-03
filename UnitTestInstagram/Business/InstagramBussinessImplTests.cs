@@ -1,16 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DemoInstagram.Business;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Moq;
 using DemoInstagram.Business.Interface;
 using DemoInstagram.APIsHelper;
-using DemoInstagram.APIsHelper.APIsInterface;
 using System.Net.Http;
-using System.IO;
 using DemoInstagram.Model;
 
 namespace DemoInstagram.Business.Tests
@@ -45,6 +39,29 @@ namespace DemoInstagram.Business.Tests
         }
 
         /// <summary>
+        /// Test Process list profile from string json wrong format
+        /// </summary>
+        [TestMethod()]
+        public void ProcessListProfileWrongJsonFormatTest()
+        {
+            string json = "";
+            Exception exception = null;
+            IBusiness bussiness = new InstagramBussinessImpl();
+            List<Profile> listProfile = new List<Profile>();
+            try
+            {
+                listProfile = bussiness.ProcessListProfile(json);
+
+            }catch(Exception ex)
+            {
+                exception = ex;
+            }
+
+            Assert.IsTrue(listProfile.Count == 0);
+            Assert.IsNotNull(exception);
+        }
+
+        /// <summary>
         /// Test Process picture Exception
         /// </summary>
         [TestMethod()]
@@ -65,6 +82,7 @@ namespace DemoInstagram.Business.Tests
             }
             Assert.IsNotNull(exception);
         }
+
         /// <summary>
         /// Test Process picture Success
         /// </summary>
@@ -96,6 +114,29 @@ namespace DemoInstagram.Business.Tests
         }
 
         /// <summary>
+        /// Test Process picture wrong format Json
+        /// </summary>
+        [TestMethod()]
+        public void ProcessPictureWrongJsonFormatTest()
+        {
+            Picture picture = null;
+            IBusiness instagramBusinees = new InstagramBussinessImpl();
+            Exception exception = null;
+            string jsonString = "aa";
+            try
+            {
+                picture = instagramBusinees.ProcessPicture(jsonString);
+
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+            }
+            Assert.IsNotNull(exception);
+            Assert.IsNull(picture);
+        }
+
+        /// <summary>
         /// Test case load comment
         /// </summary>
         [TestMethod()]
@@ -114,6 +155,29 @@ namespace DemoInstagram.Business.Tests
             listComment = instagramBusinees.LoadComment(jsonString);
 
             Assert.IsTrue(listComment.Count > 0);
+        }
+
+        /// <summary>
+        /// Test case load comment wrong format Json
+        /// </summary>
+        [TestMethod()]
+        public void LoadCommentWrongFormatJsonTest()
+        {
+            List<Comment> listComment = new List<Comment>();
+            IBusiness instagramBusinees = new InstagramBussinessImpl();
+            Exception exception = new Exception();
+            string jsonString = "";
+            try
+            {
+                listComment = instagramBusinees.LoadComment(jsonString);
+
+            }catch(Exception ex)
+            {
+                exception = ex;
+            }
+
+            Assert.IsTrue(listComment.Count == 0);
+            Assert.IsNotNull(exception);
         }
 
         /// <summary>
