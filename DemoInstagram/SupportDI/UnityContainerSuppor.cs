@@ -16,8 +16,8 @@ namespace DemoInstagram.Support
         public static IUnityContainer BuildUnityContainer()
         {
             var container = new UnityContainer();
-            container.RegisterType<IEndpoint, EndpointInstagram>();
-            container.RegisterType<IInstagramBusiness, InstagramBussinessImpl>();
+            container.RegisterType<IEndpoint, EndpointImpl>();
+            container.RegisterType<IBusiness, InstagramBussinessImpl>();
             return container;
         }
     }

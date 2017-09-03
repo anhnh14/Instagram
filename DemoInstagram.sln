@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoInstagram", "DemoInstagram\DemoInstagram.csproj", "{06EFD990-B4B5-4E09-9D1C-31E16BF7FA0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestDemoInstagram", "UnitTestDemoInstagram\UnitTestDemoInstagram.csproj", "{06991E2F-556A-4BFE-BB0D-DF5CADB47C85}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTestDemoInstagram", "UnitTestDemoInstagram\IntegrationTestDemoInstagram.csproj", "{06991E2F-556A-4BFE-BB0D-DF5CADB47C85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

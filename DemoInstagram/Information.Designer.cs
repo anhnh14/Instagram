@@ -126,6 +126,7 @@
             this.lbSearchUser.Name = "lbSearchUser";
             this.lbSearchUser.Size = new System.Drawing.Size(289, 116);
             this.lbSearchUser.TabIndex = 7;
+            this.lbSearchUser.SelectedIndexChanged += new System.EventHandler(this.lbSearchUser_SelectedIndexChanged);
             // 
             // btDownloadReccentImageofUser
             // 

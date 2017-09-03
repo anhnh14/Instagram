@@ -32,3 +32,4 @@ D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\obj\Debug\DemoInstagra
 D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\obj\Debug\DemoInstagram.csproj.GenerateResource.Cache
 D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\obj\Debug\DemoInstagram.exe
 D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\obj\Debug\DemoInstagram.pdb
+D:\Project\C#\TestInstagramGitHub\Instagram\DemoInstagram\obj\Debug\DemoInstagram.csprojResolveAssemblyReference.cache

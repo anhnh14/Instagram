@@ -26,10 +26,6 @@ namespace DemoInstagram
         {
             
             Profile profile = new Profile();
-            
-            //Call container for Dependency injection 
-            var container = UnityContainerSuppor.BuildUnityContainer();
-            var instanceEndpoint = container.Resolve<IEndpoint>();
 
             try
             {
@@ -50,7 +46,7 @@ namespace DemoInstagram
             System.IO.Directory.CreateDirectory(Global.DIRECTORY);
             this.Hide();
           
-            Information inf = new Information(profile, instanceEndpoint);
+            Information inf = new Information(profile, _endPoint);
             inf.Show();
             inf.FormClosed += new FormClosedEventHandler(frm2_FormClosed);
 

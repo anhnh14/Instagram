@@ -93,7 +93,7 @@ namespace DemoInstagram
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.InnerException.Message);
+                MessageBox.Show(ex.Message);
             }
 
         }
@@ -277,6 +277,18 @@ namespace DemoInstagram
         {
             MessageBox.Show(Configuaration.DOWNLOAD_SUCCESS + Global.DIRECTORY);
             System.Diagnostics.Process.Start(Global.DIRECTORY);
+        }
+
+        /// <summary>
+        /// Update image when change select profile
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lbSearchUser_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Profile profile = (Profile)lbSearchUser.SelectedItem;
+            pbRecentAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbRecentAvatar.Load(profile.profile_picture);
         }
     }
 }

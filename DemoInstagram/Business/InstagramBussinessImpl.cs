@@ -4,10 +4,12 @@ using Newtonsoft.Json;
 using DemoInstagram.APIsHelper;
 using Newtonsoft.Json.Linq;
 using DemoInstagram.Model;
+using System;
+using System.Net.Http;
 
 namespace DemoInstagram.Business
 {
-    public class InstagramBussinessImpl : IInstagramBusiness
+    public class InstagramBussinessImpl : IBusiness
     {
         /// <summary>
         /// Create path to API
@@ -36,6 +38,8 @@ namespace DemoInstagram.Business
             }
             return listComment;
         }
+
+       
 
         /// <summary>
         /// Get list profile from json
@@ -86,6 +90,20 @@ namespace DemoInstagram.Business
             dynamic stuff = JObject.Parse(json);
             Profile profile = JsonConvert.DeserializeObject<Profile>(stuff[Configuaration.KEY_API_DATA].ToString());
             return profile;
+        }
+
+        /// <summary>
+        /// Parse json return error from server
+        /// </summary>
+        /// <param name="response">response from server</param>
+        /// <returns>Message error</returns>
+        public string ProcessError(HttpResponseMessage response)
+        {
+            var jsonError = response.Content.ReadAsStringAsync().Result;
+            dynamic error = JObject.Parse(jsonError);
+            ErrorAPis errorApis = JsonConvert.DeserializeObject<ErrorAPis>(error[Configuaration.KEY_API_META].ToString());
+            return errorApis.error_message;
+
         }
     }
 }

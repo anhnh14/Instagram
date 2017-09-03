@@ -72,11 +72,11 @@
   <ItemGroup>
     <Compile Include="APIsHelper\APIsInterface\IEndpoint.cs" />
     <Compile Include="Business\InstagramBussinessImpl.cs" />
-    <Compile Include="Business\Interface\IInstagramBusiness.cs" />
+    <Compile Include="Business\Interface\IBusiness.cs" />
     <Compile Include="Model\ErrorAPis.cs" />
     <Compile Include="APIsHelper\Global.cs" />
     <Compile Include="APIsHelper\Configuaration.cs" />
-    <Compile Include="APIsHelper\EndpointInstagram.cs" />
+    <Compile Include="APIsHelper\EndpointImpl.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
