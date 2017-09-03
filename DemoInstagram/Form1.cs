@@ -1,7 +1,7 @@
 ﻿using DemoInstagram.APIsHelper;
 using DemoInstagram.APIsHelper.APIsInterface;
 using DemoInstagram.Business.Interface;
-using DemoInstagram.Support;
+using DemoInstagram.SupportDI;
 using Microsoft.Practices.Unity;
 using System;
 using System.Net.Http;

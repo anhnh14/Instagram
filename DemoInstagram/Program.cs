@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using Microsoft.Practices.Unity;
 using DemoInstagram.APIsHelper.APIsInterface;
 using DemoInstagram.APIsHelper;
-using DemoInstagram.Support;
+using DemoInstagram.SupportDI;
 
 namespace DemoInstagram
 {

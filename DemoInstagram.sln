@@ -5,7 +5,9 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoInstagram", "DemoInstagram\DemoInstagram.csproj", "{06EFD990-B4B5-4E09-9D1C-31E16BF7FA0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTestDemoInstagram", "UnitTestDemoInstagram\IntegrationTestDemoInstagram.csproj", "{06991E2F-556A-4BFE-BB0D-DF5CADB47C85}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestInstagram", "UnitTestInstagram\UnitTestInstagram.csproj", "{9198C015-D891-4ED1-9ED1-A74204B3B544}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestDemoInstagram", "UnitTestDemoInstagram\UnitTestDemoInstagram.csproj", "{3665CA8A-82B7-4B5A-AB2A-349C37F2D709}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +19,14 @@ Global
 		{06EFD990-B4B5-4E09-9D1C-31E16BF7FA0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06EFD990-B4B5-4E09-9D1C-31E16BF7FA0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06EFD990-B4B5-4E09-9D1C-31E16BF7FA0F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{06991E2F-556A-4BFE-BB0D-DF5CADB47C85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{06991E2F-556A-4BFE-BB0D-DF5CADB47C85}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{06991E2F-556A-4BFE-BB0D-DF5CADB47C85}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{06991E2F-556A-4BFE-BB0D-DF5CADB47C85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9198C015-D891-4ED1-9ED1-A74204B3B544}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9198C015-D891-4ED1-9ED1-A74204B3B544}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9198C015-D891-4ED1-9ED1-A74204B3B544}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9198C015-D891-4ED1-9ED1-A74204B3B544}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3665CA8A-82B7-4B5A-AB2A-349C37F2D709}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3665CA8A-82B7-4B5A-AB2A-349C37F2D709}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3665CA8A-82B7-4B5A-AB2A-349C37F2D709}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3665CA8A-82B7-4B5A-AB2A-349C37F2D709}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

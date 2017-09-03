@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using DemoInstagram.Business.Interface;
 using DemoInstagram.Business;
 
-namespace DemoInstagram.Support
+namespace DemoInstagram.SupportDI
 {
     public class UnityContainerSuppor
     {
