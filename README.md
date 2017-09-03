@@ -1,5 +1,5 @@
 # Window application using instagram APIs
-This is window application developed using Windows MFC. Demo simple functions using APIs from Instagram to download images to local machine, post comments & likes. This application uses Instagram APIs in SandBox Mode (trial version) so it has some restrictions.
+This is window application developed using Winform. Demo simple functions using APIs from Instagram to download images to local machine, post comments & likes. This application uses Instagram APIs in SandBox Mode (trial version) so it has some restrictions.
 # Install nuget
 - Newtonsoft.Json.10.0.3
 - Install-Package Newtonsoft.Json -Version 10.0.3 
