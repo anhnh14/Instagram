@@ -39,8 +39,6 @@ namespace DemoInstagram.Business
             return listComment;
         }
 
-       
-
         /// <summary>
         /// Get list profile from json
         /// </summary>
