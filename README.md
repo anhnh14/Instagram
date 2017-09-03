@@ -2,7 +2,7 @@
 This is window application developed by WinForm. Demo small function using APIs from instagram to help download image to local machine. 
 This application using Sandbox Mode from APIs Instagram so it have some restrict about function. 
 # Install nuget
-- New Newtonsoft.Json.10.0.3
+- Newtonsoft.Json.10.0.3
 - Install-Package Newtonsoft.Json -Version 10.0.3 
 - Link: https://www.nuget.org/packages/Newtonsoft.Json/
 - Unity
