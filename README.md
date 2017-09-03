@@ -21,7 +21,7 @@ How to get token:
 - Win form
 - C#
 - Unity framwork (Dependency injection)
-- NUNIT (Unit test)
+- NUNIT (MS Test)
 # Screen shoot
 ![login](https://user-images.githubusercontent.com/11540079/30004600-0d2a0fca-9098-11e7-8aca-216694435329.PNG)
 ![information](https://user-images.githubusercontent.com/11540079/30004609-3095a73a-9098-11e7-85d1-47c5e19a0e10.PNG)
