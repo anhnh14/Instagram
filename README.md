@@ -20,7 +20,7 @@ How to get token:
 # Technologies
 - Win form
 - C#
-- Unity framwork (Dependency injection)
+- Unity (Dependency injection)
 - MS Test (Unit test)
 # Screen shoot
 ![login](https://user-images.githubusercontent.com/11540079/30004600-0d2a0fca-9098-11e7-8aca-216694435329.PNG)
