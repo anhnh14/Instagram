@@ -89,17 +89,10 @@ namespace DemoInstagram.Business.Tests
         [TestMethod()]
         public void ProcessPictureTest()
         {
-            string path = "https://api.instagram.com/v1/users/5964438851/media/recent/?access_token=39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
             Picture picture = new Picture();
             IBusiness instagramBusinees = new InstagramBussinessImpl();
             Exception exception = null;
-            HttpClient client = new HttpClient();
-            HttpResponseMessage response = new HttpResponseMessage();
-            Task.Run(async () =>
-            {
-                response = await client.GetAsync(path);
-            }).Wait();
-            string jsonString = response.Content.ReadAsStringAsync().Result;
+            string jsonString = "{'data': [{'id': '1593619934200949826_5964438851',  'images': { 'standard_resolution': {'width': 640, 'height': 640, 'url': 'https://scontent.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/21224058_826641937504407_498517910608674816_n.jpg'}}}], 'meta': {'code': 200}}";
             try
             {
                 picture = instagramBusinees.ProcessPicture(jsonString);
@@ -111,6 +104,7 @@ namespace DemoInstagram.Business.Tests
             }
             Assert.IsNull(exception);
             Assert.IsNotNull(picture);
+            Assert.AreEqual(picture.url, "https://scontent.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/21224058_826641937504407_498517910608674816_n.jpg");
         }
 
         /// <summary>
@@ -142,19 +136,14 @@ namespace DemoInstagram.Business.Tests
         [TestMethod()]
         public void LoadCommentTest()
         {
-            string path = "https://api.instagram.com/v1/media/1593619934200949826_5964438851/comments?access_token=39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
             List<Comment> listComment = new List<Comment>();
             IBusiness instagramBusinees = new InstagramBussinessImpl();
-            HttpClient client = new HttpClient();
-            HttpResponseMessage response = new HttpResponseMessage();
-            Task.Run(async () =>
-            {
-                response = await client.GetAsync(path);
-            }).Wait();
-            string jsonString = response.Content.ReadAsStringAsync().Result;
+          
+            string jsonString = "{'data': [{'id': '17870686654164119', 'from': {'id': '39217616', 'username': 'anhnh148', 'full_name': 'Anh Nguyen', 'profile_picture': 'https://scontent.cdninstagram.com/t51.2885-19/s150x150/21224977_117941655535007_1148284743813431296_a.jpg'}, 'text': 'This is a block of text', 'created_time': '1504232576'}],'meta': {'code': 200}}";
             listComment = instagramBusinees.LoadComment(jsonString);
 
             Assert.IsTrue(listComment.Count > 0);
+            Assert.AreEqual(listComment[0].text, "This is a block of text");
         }
 
         /// <summary>
