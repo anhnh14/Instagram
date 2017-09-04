@@ -9,7 +9,7 @@ using DemoInstagram.APIsHelper.APIsInterface;
 using DemoInstagram.Business.Interface;
 using DemoInstagram.Business;
 using Microsoft.Practices.Unity;
-using DemoInstagram.SupportDI;
+
 
 namespace DemoInstagram.APIsHelper.Tests
 {

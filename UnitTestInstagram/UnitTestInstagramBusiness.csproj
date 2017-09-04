@@ -63,7 +63,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Business\InstagramBussinessImplTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

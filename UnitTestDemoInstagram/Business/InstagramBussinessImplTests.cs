@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using DemoInstagram.Business.Interface;
 using DemoInstagram.APIsHelper;
-using System.Net.Http;
 using DemoInstagram.Model;
+using System.Net.Http;
 
 namespace DemoInstagram.Business.Tests
 {
