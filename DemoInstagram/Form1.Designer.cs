@@ -48,7 +48,6 @@
             this.tbToken.Name = "tbToken";
             this.tbToken.Size = new System.Drawing.Size(185, 22);
             this.tbToken.TabIndex = 2;
-            this.tbToken.Text = "39217616.abb738d.964d271718624e29a213d5b8d602ccf7";
             // 
             // btnLogin
             // 
